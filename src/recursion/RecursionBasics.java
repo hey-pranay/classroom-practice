@@ -127,6 +127,80 @@ public class RecursionBasics {
         return halfPower;
     }
 
+    // Tiling problem
+    // space =
+    // time
+    static int countWays(int n) {
+        if (n == 0 || n == 1) {
+            return 1;
+        }
+
+        // vertical choice
+        int fnm1 = countWays(n - 1);
+
+        // horizontal choice
+        int fnm2 = countWays(n - 2);
+
+        int totalWays = fnm1 + fnm2;
+        return totalWays;
+    }
+
+    // remove duplicate in a string : small letters
+    static void removeDuplicates(String str, int idx, StringBuilder newStr, boolean[] map) {
+        if (idx == str.length()) {
+            System.out.println(newStr);
+            return;
+        }
+
+        char currChar = str.charAt(idx);
+
+        if (map[currChar - 'a']) {
+            // duplicate
+            removeDuplicates(str, idx + 1, newStr, map);
+        } else {
+            map[currChar - 'a'] = true;
+            removeDuplicates(str, idx + 1, newStr.append(currChar), map);
+        }
+    }
+
+    /*
+         Friends Pairing Problem
+         Given n friends, each one can remain single or can be paired up with some other
+         friend. Each friend can be paired only once. Find out the total number of ways in
+         which friends can remain single or can be paired up.
+    */
+
+    static int friendsPairing(int n) {
+        if (n == 1 || n == 2) {
+            return n;
+        }
+
+        // single
+        int fnm1 = friendsPairing(n - 1);
+
+        // pair
+        int fnm2 = friendsPairing(n - 2);
+        int pairWays = (n - 1) * fnm2;
+
+        int totalWays = fnm1 + pairWays;
+        return totalWays;
+    }
+
+    // Binary Strings Problem
+    static void printBinaryStrings(int n, int lastPlace, String str) {
+        if (n == 0) {
+            System.out.println(str);
+            return;
+        }
+
+        printBinaryStrings(n - 1, 0, str + "0");
+
+        if (lastPlace == 0) {
+            printBinaryStrings(n - 1, 1, str + "1");
+        }
+
+    }
+
     public static void main(String[] args) {
         System.out.print("increasing numbers : ");
         printNumber(5);
@@ -144,5 +218,10 @@ public class RecursionBasics {
         System.out.println(lastOcc(arr, 5, 0));
         System.out.println(xPowerTOn(2, 4));
         System.out.println(optimisedPower(2, 5));
+        System.out.println(countWays(4));
+        String str = "pprraannaayy";
+        removeDuplicates(str, 0, new StringBuilder(""), new boolean[26]);
+        System.out.println(friendsPairing(4));
+        printBinaryStrings(3, 0, "");
     }
 }
