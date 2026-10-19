@@ -1,0 +1,45 @@
+GREEDY ALGORITHMS
+
+Definition: Make the best local choice at each step without normally revisiting previous choices.
+
+Properties: Greedy-choice property and optimal substructure.
+
+Workflow:
+    Understand objective
+    identify greedy rule
+    sort/use data structure
+    select valid candidate
+    update state
+    prove correctness
+    analyze complexity
+
+Important patterns:
+    Activity Selection:
+        sort by finish time;
+        select if start >= lastFinish.
+
+    Fractional Knapsack:
+        sort by value/weight descending;
+        take full items or a fraction.
+
+    Job Sequencing:
+        sort by profit descending;
+        schedule in the latest free slot before deadline.
+
+    Coin Change:
+        largest coin first is not always optimal for arbitrary denominations.
+
+    Kruskal: choose the cheapest safe edge.
+
+    Dijkstra:
+        choose the nearest unsettled vertex;
+        requires non-negative edge weights.
+
+Complexity:
+    sorting + scan O(n log n);
+    scan O(n);
+    heap operation O(log n).
+
+Golden rule:
+    A locally best choice is not necessarily globally optimal;
+    justify the greedy rule.
