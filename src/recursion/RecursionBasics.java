@@ -32,9 +32,9 @@ public class RecursionBasics {
         if (n == 0) {
             return 1;
         }
-        int fnm1 = fact(n - 1);
-        int fn = n * fact(n - 1);
-        return fn;
+//        int fnm1 = fact(n - 1);
+//        int fn = n * fnm1;
+        return n * fact(n-1);
     }
 
     // sum of first n natural numbers
@@ -46,7 +46,7 @@ public class RecursionBasics {
         return sum;
     }
 
-    // print nth fibonacci number
+    // print nth Fibonacci series
     // space = O(n)
     // time = (2^n) exponential
     static int fib(int n) {
@@ -202,26 +202,26 @@ public class RecursionBasics {
     }
 
     public static void main(String[] args) {
-        System.out.print("increasing numbers : ");
-        printNumber(5);
-        System.out.println();
-        System.out.print("decreasing numbers : ");
-        printDec(5);
-        System.out.println();
+//        System.out.print("increasing numbers : ");
+//        printNumber(5);
+//        System.out.println();
+//        System.out.print("decreasing numbers : ");
+//        printDec(5);
+//        System.out.println();
         System.out.print("factorial of 5 : " + fact(5));
-        System.out.println();
-        System.out.println("sum of first 5 natural numbers : " + sumOfFNatural(5));
-        System.out.println("fib of 10 : " + fib(10));
-        int[] arr = {1, 2, 9, 3, 4, 5, 45, 2, 84, 5};
-        System.out.println("Is array sorted : " + isSorted(arr, 0));
-        System.out.println(firstOcc(arr, 9, 0));
-        System.out.println(lastOcc(arr, 5, 0));
-        System.out.println(xPowerTOn(2, 4));
-        System.out.println(optimisedPower(2, 5));
-        System.out.println(countWays(4));
-        String str = "pprraannaayy";
-        removeDuplicates(str, 0, new StringBuilder(""), new boolean[26]);
-        System.out.println(friendsPairing(4));
-        printBinaryStrings(3, 0, "");
+//        System.out.println();
+//        System.out.println("sum of first 5 natural numbers : " + sumOfFNatural(5));
+//        System.out.println("fib of 10 : " + fib(10));
+//        int[] arr = {1, 2, 9, 3, 4, 5, 45, 2, 84, 5};
+//        System.out.println("Is array sorted : " + isSorted(arr, 0));
+//        System.out.println(firstOcc(arr, 9, 0));
+//        System.out.println(lastOcc(arr, 5, 0));
+//        System.out.println(xPowerTOn(2, 4));
+//        System.out.println(optimisedPower(2, 5));
+//        System.out.println(countWays(4));
+//        String str = "pprraannaayy";
+//        removeDuplicates(str, 0, new StringBuilder(""), new boolean[26]);
+//        System.out.println(friendsPairing(4));
+//        printBinaryStrings(3, 0, "");
     }
 }
