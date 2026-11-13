@@ -500,6 +500,47 @@ and place the saved element at the beginning.
 
 ---
 
+### Lesson 03: Finding the Minimum Element
+
+**Concept:** Find the smallest element in an integer array using linear traversal.
+
+**Logic:**
+1. Initialize `min` with `Integer.MAX_VALUE`.
+2. Traverse every element.
+3. Compare the current element with `min`.
+4. If the current element is smaller, update `min`.
+5. After traversal, `min` contains the smallest element.
+
+**Java implementation:**
+```java
+int min = Integer.MAX_VALUE;
+
+for (int num : arr) {
+    if (num < min) {
+        min = num;
+    }
+}
+
+System.out.println(min);
+```
+
+**Important observations:**
+- Use `Integer.MAX_VALUE` as the initial value.
+- Update `min` only when the current element is smaller.
+- An empty array must be handled separately.
+- The same traversal pattern works for both maximum and minimum.
+
+**Pattern:** Linear Traversal / Running Minimum.
+
+**Recognition clue:** When asked to find the smallest element in an unsorted array, maintain a variable that stores the smallest value found so far.
+
+**Complexity:**
+- Time: `O(n)`
+- Auxiliary space: `O(1)`
+
+
+---
+
 ## Revision Rules
 
 1. Always check whether an array can be empty before accessing `arr[0]`.
