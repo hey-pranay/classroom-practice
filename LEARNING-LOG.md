@@ -1,92 +1,30 @@
 # DSA Learning Log
 
-A collection of important concepts, coding observations, problem-solving lessons, and mistakes learned throughout DSA preparation.
-
-The purpose of this file is to maintain a quick revision reference across all DSA topics.
+This file records important concepts, observations, mistakes, and rules learned while solving DSA problems using Java.
 
 ---
 
-# 1. Java Fundamentals for DSA
+## Array Fundamentals
 
-## For Loop vs Enhanced For Loop
+### Lesson 01: Array Traversal
 
-### Normal For Loop
+**Concept:** Accessing and processing array elements.
 
-```java
-    for (int i = 0; i < arr.length; i++) {
-        System.out.println(arr[i]);
-    }
-```
-
-Use when:
-- You need the array index.
-- You need to traverse backwards.
-- You need to modify elements using their indexes.
-- You need to compare elements at different positions.
-
-### Enhanced For Loop
-
+**Forward traversal:**
 ```java
 for (int num : arr) {
-    System.out.println(num);
+    System.out.print(num + " ");
 }
 ```
 
-Use when:
-- You only need to access element values.
-- You don't need the index.
-- You want simple, readable traversal.
-
-### Important Difference
-
-| Feature | Normal For | Enhanced For |
-|---|---|---|
-| Access index | Yes | No |
-| Access value | Yes | Yes |
-| Reverse traversal | Yes | Not directly |
-| Modify array using index | Yes | No |
-| Simple traversal | Yes | Yes |
-
-**Remember:** When solving DSA problems, prefer a normal `for` loop whenever the index is important.
-
----
-
-# 2. Array Fundamentals
-
-## Lesson 01: Array Traversal
-
-Example:
-
-```java
-int[] arr = {12, 45, 23, 67, 89, 10};
-```
-
-### A. Forward Traversal
-
-```java
-for (int i = 0; i < arr.length; i++) {
-    System.out.println(arr[i]);
-}
-```
-
-- Start at index 0.
-- Continue while `i < arr.length`.
-- Increment using `i++`.
-
-### B. Reverse Traversal
-
+**Reverse traversal:**
 ```java
 for (int i = arr.length - 1; i >= 0; i--) {
-    System.out.println(arr[i]);
+    System.out.print(arr[i] + " ");
 }
 ```
 
-- Start at the last valid index.
-- Continue while `i >= 0`.
-- Decrement using `i--`.
-
-### C. Calculate Array Sum
-
+**Calculate array sum:**
 ```java
 int sum = 0;
 
@@ -95,49 +33,69 @@ for (int num : arr) {
 }
 ```
 
-- Initialize sum to 0.
-- Add every element.
-- Final value contains the total.
+**Important observations:**
+- Use enhanced `for` when you only need element values.
+- Use normal `for` when you need the index.
+- Reverse traversal does not modify the original array.
+- Array indexing starts at `0`.
 
-### Important Observations
-
-1. Array indexing starts at 0.
-2. Last valid index = `arr.length - 1`.
-3. Accessing an array element by index takes O(1).
-4. Traversing an array takes O(n).
-5. Reverse traversal does not mean modifying or reversing the original array.
-
-### Complexity
-
-| Operation | Time | Extra Space |
-|---|---|---|
-| Forward traversal | O(n) | O(1) |
-| Reverse traversal | O(n) | O(1) |
-| Sum of elements | O(n) | O(1) |
+**Complexity:**
+- Time: O(n)
+- Auxiliary space: O(1)
 
 ---
 
-# 3. Important Rules to Remember
+### Lesson 02: Finding Maximum Element
 
-- Never use `i <= arr.length` when accessing an array using `arr[i]`.
-- Array indexing begins at 0.
-- Initialize maximum/minimum using an actual array element when appropriate.
-- Understand the difference between printing in reverse and reversing an array in place.
-- Always dry-run loops when the iteration logic is unclear.
+**Concept:** Find the largest element in an integer array using linear traversal.
+
+**Java implementation:**
+```java
+int max = Integer.MIN_VALUE;
+
+for (int num : arr) {
+    if (num > max) {
+        max = num;
+    }
+}
+
+System.out.println(max);
+```
+
+**Logic:**
+1. Initialize `max` with `Integer.MIN_VALUE`.
+2. Visit each element.
+3. Compare the current element with `max`.
+4. If the current element is greater, update `max`.
+5. After traversal, `max` stores the largest element.
+
+**Important observations:**
+- `Integer.MIN_VALUE` is the smallest possible Java `int`.
+- This initialization works even when all array elements are negative.
+- We only update `max` when we find a larger element.
+- An empty array must be handled separately.
+- We don't need to sort the array to find its maximum.
+
+**Alternative initialization:**
+```java
+int max = arr[0];
+```
+This also works, provided the array is not empty.
+
+**Complexity:**
+- Time: O(n)
+- Auxiliary space: O(1)
+
+**Pattern:** Linear Traversal / Running Maximum.
+
+**Recognition clue:** When a problem asks for the largest element, consider maintaining a variable that stores the maximum value found so far.
 
 ---
 
-# 4. Future Learning Entries
+## Revision Rules
 
-New concepts will be added here as we progress.
-
-Each entry should contain:
-
-- Concept or topic.
-- What I learned.
-- When to use it.
-- Important rules.
-- Common mistakes.
-- A small Java example.
-
-**Revision principle:** Read this file before attempting previously solved problems again.
+1. Always check whether an array can be empty before accessing `arr[0]`.
+2. Use enhanced `for` when an index is unnecessary.
+3. Use normal `for` when index-based operations are required.
+4. Finding a maximum or minimum does not require sorting.
+5. Track the best value found so far using a variable.
