@@ -132,6 +132,36 @@ System.out.println(min);
 
 ---
 
+### Lesson 04: Finding the Second Largest Element
+
+**Concept:** Find the second-largest distinct element in an array using a single traversal.
+
+**Logic:**
+1. Maintain two variables: `largest` and `secondLargest`.
+2. If the current element is greater than `largest`:
+    - Move the previous `largest` into `secondLargest`.
+    - Update `largest`.
+3. Otherwise, check whether the current element is smaller than `largest` but greater than `secondLargest`.
+4. Update `secondLargest` when the condition is satisfied.
+5. Use a boolean flag to track whether a second-largest element has been found.
+
+**Important observations:**
+- Second largest means the second-largest distinct value.
+- Duplicate largest values must be ignored.
+- Save the previous largest before updating it.
+- A boolean flag helps distinguish a valid `Integer.MIN_VALUE` from an uninitialized value.
+- Handle arrays with fewer than two elements and arrays without a second distinct value.
+
+**Pattern:** Two Variables / Running Best and Second Best.
+
+**Recognition clue:** When asked to find the second-largest or second-smallest element, consider maintaining two candidate values during one traversal.
+
+**Complexity:**
+- Time: `O(n)`
+- Auxiliary space: `O(1)`
+
+---
+
 ## Revision Rules
 
 1. Always check whether an array can be empty before accessing `arr[0]`.
