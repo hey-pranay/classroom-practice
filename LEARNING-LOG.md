@@ -162,6 +162,36 @@ System.out.println(min);
 
 ---
 
+### Lesson 05: Finding the Second Smallest Element
+
+**Concept:** Find the second-smallest distinct element in an array using a single traversal.
+
+**Logic:**
+1. Maintain two variables: `minimum` and `secondMin`.
+2. If the current element is smaller than `minimum`:
+   - Move the previous `minimum` into `secondMin`.
+   - Update `minimum`.
+3. Otherwise, check whether the current element is greater than `minimum` and smaller than `secondMin`.
+4. Update `secondMin` when the condition is satisfied.
+5. Use a boolean flag to track whether a second minimum has been found.
+
+**Important observations:**
+- Second smallest means the second-smallest distinct value.
+- Duplicate minimum values must be ignored.
+- Save the previous minimum before updating it.
+- Compare `num < secondMin`, not `minimum < secondMin`.
+- A boolean flag helps distinguish a valid `Integer.MAX_VALUE` from an uninitialized value.
+- Handle arrays without a second distinct minimum.
+
+**Pattern:** Two Variables / Running Best and Second Best.
+
+**Recognition clue:** When asked to find the second-smallest element, maintain the smallest and second-smallest candidates during one traversal.
+
+**Complexity:**
+- Time: `O(n)`
+- Auxiliary space: `O(1)`
+
+---
 ## Revision Rules
 
 1. Always check whether an array can be empty before accessing `arr[0]`.
