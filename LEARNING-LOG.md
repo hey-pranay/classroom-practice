@@ -289,6 +289,40 @@ Unique elements: `1 2 3 4 5`
 **Key takeaway:** Use the fast pointer to explore and the slow pointer to maintain the valid unique portion of the array.
 
 ---
+
+### Lesson 09: Move Zeroes to the End
+
+**Problem:** Move all zeroes to the end of an array while maintaining the relative order of non-zero elements.
+
+**Example:**
+```java
+int[] arr = {0, 1, 0, 3, 12};
+```
+Output: `1 3 12 0 0`
+
+**Approach: Two Pointers (Slow and Fast)**
+
+- `fast` traverses the entire array and searches for non-zero elements.
+- `slow` tracks the next position where a non-zero element should be placed.
+- When `arr[fast] != 0`, copy it to `arr[slow]` and increment `slow`.
+- After moving all non-zero elements, fill the remaining positions with zeroes.
+
+**Important observations:**
+- Start `slow = 0` and `fast = 0`.
+- Do not start `fast` at 1 because the first element might be non-zero.
+- The first loop moves non-zero elements to the beginning.
+- The second loop fills the remaining positions with zeroes.
+- The relative order of non-zero elements is maintained.
+
+**Pattern Recognition:** Two Pointers — Slow and Fast.
+
+**Complexity:**
+- Time: O(n) — two linear traversals.
+- Auxiliary Space: O(1) — modification happens in the original array.
+
+**Key takeaway:** Use one pointer to explore and another to maintain the position where valid elements should be placed.
+
+---
 ## Revision Rules
 
 1. Always check whether an array can be empty before accessing `arr[0]`.
