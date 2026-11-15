@@ -221,6 +221,39 @@ System.out.println(min);
 - Auxiliary space: `O(1)`
 
 ---
+
+### Lesson 07: Reverse an Array
+
+**Concept:** Reverse an array in-place using two pointers.
+
+**Logic:**
+1. Initialize `left = 0`.
+2. Initialize `right = arr.length - 1`.
+3. Continue while `left < right`.
+4. Swap the elements at `left` and `right` using a temporary variable.
+5. Increment `left` and decrement `right`.
+6. Stop when the pointers meet or cross.
+
+**Important observations:**
+- Use a temporary variable to perform swapping safely.
+- Both pointers move towards the center.
+- `left < right` prevents unnecessary swaps.
+- The original array is modified.
+- No additional array is required.
+
+**Pattern:** Two Pointers.
+
+**Recognition clue:** When a problem involves processing or swapping elements from opposite ends of an array, consider the Two Pointers pattern.
+
+**Key takeaway**
+   - left < right → Stop when pointers meet. No unnecessary swap.
+   - left <= right → Also processes the middle element. Result remains correct, but performs an unnecessary self-swap.
+
+**Complexity:**
+- Time: `O(n)`
+- Auxiliary space: `O(1)`
+
+---
 ## Revision Rules
 
 1. Always check whether an array can be empty before accessing `arr[0]`.
