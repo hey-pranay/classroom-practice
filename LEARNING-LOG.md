@@ -323,6 +323,40 @@ Output: `1 3 12 0 0`
 **Key takeaway:** Use one pointer to explore and another to maintain the position where valid elements should be placed.
 
 ---
+
+### Lesson 10: Move Zeroes to the Start
+
+**Problem:** Move all zeroes to the beginning of an array while maintaining the relative order of non-zero elements.
+
+**Example:**
+```java
+int[] arr = {1, 0, 3, 0, 12};
+```
+Output: `0 0 1 3 12`
+
+**Approach: Two Pointers (Slow and Fast)**
+
+- `fast` traverses the array to find non-zero elements.
+- `slow` tracks the next position where a non-zero element should be placed.
+- Copy non-zero elements into the beginning of the array while maintaining their relative order.
+- After processing all non-zero elements, fill the remaining positions at the end with zeroes.
+- To move zeroes to the start instead, shift non-zero elements towards the end while preserving their order, then fill the remaining positions at the beginning with zeroes.
+
+**Important observations:**
+- Moving zeroes to the start is the reverse arrangement of moving zeroes to the end.
+- Preserve the relative order of non-zero elements.
+- Be careful about traversal direction when modifying the original array in-place.
+- Handle empty arrays safely.
+
+**Pattern Recognition:** Two Pointers — Slow and Fast.
+
+**Complexity:**
+- Time: O(n)
+- Auxiliary Space: O(1)
+
+**Key takeaway:** Decide which section of the array should contain the non-zero elements, maintain their relative order, and fill the remaining positions with zeroes.
+
+---
 ## Revision Rules
 
 1. Always check whether an array can be empty before accessing `arr[0]`.
