@@ -192,6 +192,35 @@ System.out.println(min);
 - Auxiliary space: `O(1)`
 
 ---
+
+### Lesson 06: Check if an Array Is Sorted
+
+**Concept:** Check whether an array is sorted in non-decreasing order.
+
+**Logic:**
+1. Initialize a boolean variable `isSorted = true`.
+2. Traverse the array using a normal `for` loop.
+3. Compare each element with the next element.
+4. If `arr[i] > arr[i + 1]`, the array is not sorted.
+5. Set `isSorted = false` and stop the loop using `break`.
+
+**Important observations:**
+- Compare adjacent elements to check sorted order.
+- Use `arr.length - 1` to avoid accessing an invalid next index.
+- Use `>` instead of `>=` to allow duplicate elements.
+- `break` avoids unnecessary comparisons.
+- Empty and single-element arrays are considered sorted.
+
+**Pattern:** Adjacent Element Comparison / Linear Traversal.
+
+**Recognition clue:** When asked whether an array is sorted, compare each element with its immediate neighbour.
+
+**Complexity:**
+- Best case: `O(1)`
+- Worst case: `O(n)`
+- Auxiliary space: `O(1)`
+
+---
 ## Revision Rules
 
 1. Always check whether an array can be empty before accessing `arr[0]`.
