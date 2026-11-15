@@ -357,6 +357,44 @@ Output: `0 0 1 3 12`
 **Key takeaway:** Decide which section of the array should contain the non-zero elements, maintain their relative order, and fill the remaining positions with zeroes.
 
 ---
+
+### Lesson 11: Left Rotate an Array by One Position
+
+**Problem:** Move the first element of an array to the last position and shift all remaining elements one position to the left.
+
+**Example:**
+```java
+int[] arr = {10, 20, 30, 40, 50};
+```
+
+Output: `20 30 40 50 10`
+
+**Approach: Temporary Variable and Array Traversal**
+
+- Store the first element in a temporary variable before modifying the array.
+- Traverse the array from index `0` to `arr.length - 2`.
+- Shift each element one position to the left using `arr[i] = arr[i + 1]`.
+- Place the stored first element at the last index using `arr[arr.length - 1] = first`.
+- Handle empty arrays safely before accessing the first element.
+
+**Important observations:**
+
+- Store the first element before shifting to avoid losing it.
+- Use forward traversal when shifting elements to the left.
+- The last valid array index is `arr.length - 1`, not `arr.length`.
+- A single-element array remains unchanged after rotation.
+- The original array is modified in-place.
+
+**Pattern Recognition:** Array Traversal — In-place Modification.
+
+**Complexity:**
+
+- Time: O(n)
+- Auxiliary Space: O(1)
+
+**Key takeaway:** Save the element that needs to move, shift the remaining elements in the correct direction, and place the saved element at its destination.
+
+---
 ## Revision Rules
 
 1. Always check whether an array can be empty before accessing `arr[0]`.
