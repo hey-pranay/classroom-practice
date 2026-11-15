@@ -254,6 +254,41 @@ System.out.println(min);
 - Auxiliary space: `O(1)`
 
 ---
+
+### Lesson 08: Remove Duplicates from a Sorted Array
+
+**Problem:** Remove duplicate elements from a sorted array in-place.
+
+**Example:**
+```java
+int[] arr = {1, 1, 2, 2, 3, 4, 4, 5};
+```
+Unique elements: `1 2 3 4 5`
+
+**Approach: Two Pointers (Slow and Fast)**
+
+- `slow` tracks the position of the last unique element.
+- `fast` scans the array to find new unique elements.
+- Compare `arr[fast]` with `arr[slow]`.
+- If different, increment `slow` and copy `arr[fast]` to `arr[slow]`.
+- The number of unique elements is `slow + 1`.
+
+**Important observations:**
+- Start `slow = 0` and `fast = 1`.
+- The first element is already considered unique.
+- The array must be sorted so duplicates are adjacent.
+- Only the first `slow + 1` positions contain valid unique elements.
+- Handle an empty array separately to avoid invalid indexing.
+
+**Pattern Recognition:** Two Pointers — Slow and Fast.
+
+**Complexity:**
+- Time: O(n)
+- Auxiliary Space: O(1)
+
+**Key takeaway:** Use the fast pointer to explore and the slow pointer to maintain the valid unique portion of the array.
+
+---
 ## Revision Rules
 
 1. Always check whether an array can be empty before accessing `arr[0]`.
