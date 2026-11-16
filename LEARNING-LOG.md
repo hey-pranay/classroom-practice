@@ -585,6 +585,79 @@ reverse(arr, 0, arr.length - 1);
 **Key Takeaway:** The Reversal Algorithm uses three reversals to rotate an array in O(n) time and O(1) auxiliary space. It is an important array manipulation technique.
 
 ---
+
+### Lesson 14: Right Rotate an Array by K Positions
+
+**Problem:** Rotate an array to the right by K positions. The last K elements move to the beginning while maintaining their relative order.
+
+**Example:**
+```java
+int[] arr = {1, 2, 3, 4, 5, 6};
+int k = 2;
+```
+
+Output: `5 6 1 2 3 4`
+
+**Approach 1: Repeated Rotation (Brute Force)**
+
+- Store the last element in a temporary variable.
+- Shift all remaining elements one position to the right.
+- Place the saved element at index 0.
+- Repeat the process K times.
+
+**Complexity:**
+- Time: O(n × k)
+- Auxiliary Space: O(1)
+
+**Approach 2: Temporary Array**
+
+- Create a temporary array of size K.
+- Copy the last K elements into the temporary array.
+- Shift the remaining elements K positions to the right, traversing backward.
+- Copy the saved elements to the beginning of the original array.
+
+**Complexity:**
+- Time: O(n)
+- Auxiliary Space: O(k)
+
+**Approach 3: Reversal Algorithm (Optimal)**
+
+- Reverse the complete array.
+- Reverse the first K elements.
+- Reverse the remaining N-K elements.
+
+**Three cases:**
+```java
+reverse(arr, 0, arr.length - 1);
+reverse(arr, 0, k - 1);
+reverse(arr, k, arr.length - 1);
+```
+
+**Complexity:**
+- Time: O(n)
+- Auxiliary Space: O(1)
+
+**Important Observations:**
+
+- Always handle an empty array before performing rotation.
+- Normalize K using `k = k % arr.length`.
+- Use backward traversal when shifting elements to the right.
+- The same `reverse()` helper method works for both left and right rotations.
+- The reversal algorithm avoids using an extra array.
+
+**Pattern Recognition:** Array Rotation — Reversal Algorithm and Two Pointers.
+
+**Complexity Comparison:**
+
+| Approach | Time | Auxiliary Space |
+|---|---|---|
+| Repeated Rotation | O(n × k) | O(1) |
+| Temporary Array | O(n) | O(k) |
+| Reversal Algorithm | O(n) | O(1) |
+
+**Key Takeaway:** Right rotation can be performed optimally using three reversals: reverse the entire array, reverse the first K elements, and reverse the remaining elements.
+
+---
 ## Revision Rules
 
 1. Always check whether an array can be empty before accessing `arr[0]`.
