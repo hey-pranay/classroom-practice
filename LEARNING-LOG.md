@@ -701,6 +701,46 @@ MissingNumber = ExpectedSum - ActualSum
 **Key Takeaway:** Instead of searching for every number individually, calculate the expected sum and subtract the actual array sum to find the missing number.
 
 ---
+
+### Lesson 16: Maximum Consecutive Ones
+
+**Problem:** Given a binary array containing only 0s and 1s, find the maximum number of consecutive 1s.
+
+**Example:**
+```java
+int[] nums = {1, 1, 0, 1, 1, 1};
+```
+
+Output: `3`
+
+**Approach: Single Traversal (Counting)**
+
+- Initialize `count = 0` to track the current consecutive ones.
+- Initialize `maxCount = 0` to store the maximum consecutive ones.
+- Traverse the array.
+- If the current element is 1, increment `count`.
+- If the current element is 0, reset `count` to 0.
+- After every element, update `maxCount` using `Math.max()`.
+- Return `maxCount`.
+
+**Important Observations:**
+
+- `count` tracks the current consecutive sequence.
+- `maxCount` remembers the longest sequence found so far.
+- Encountering 0 breaks the current sequence, so `count` resets to 0.
+- Update `maxCount` inside the loop to avoid missing an earlier maximum.
+- An empty array returns 0.
+
+**Pattern Recognition:** Array Traversal — Counting and Tracking Maximum.
+
+**Complexity:**
+
+- Time: O(n)
+- Auxiliary Space: O(1)
+
+**Key Takeaway:** Use two variables to track the current consecutive count and the maximum count. Reset the current count whenever the sequence is broken.
+
+---
 ## Revision Rules
 
 1. Always check whether an array can be empty before accessing `arr[0]`.
