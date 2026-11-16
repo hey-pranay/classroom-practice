@@ -658,6 +658,49 @@ reverse(arr, k, arr.length - 1);
 **Key Takeaway:** Right rotation can be performed optimally using three reversals: reverse the entire array, reverse the first K elements, and reverse the remaining elements.
 
 ---
+
+### Lesson 15: Find the Missing Number in an Array
+
+**Problem:** Given an array containing distinct numbers from a consecutive range, find the one missing number.
+
+**Example:**
+```java
+int[] arr = {1, 2, 4, 5};
+```
+
+Output: `3`
+
+**Approach: Sum Formula**
+
+- Find the starting and ending numbers of the range.
+- Calculate the expected sum of all numbers using the arithmetic progression formula.
+- Calculate the actual sum of the array elements.
+- Subtract the actual sum from the expected sum to find the missing number.
+
+**Formula:**
+```
+ExpectedSum = { (start+end) * (end-start+1) } / 2
+
+MissingNumber = ExpectedSum - ActualSum
+```
+
+**Important Observations:**
+
+- `arr[i]` accesses the actual array element, whereas `i` represents its index.
+- `end - start + 1` calculates the total count of numbers in the range.
+- Use `long` to reduce the risk of integer overflow during sum calculations.
+- This approach assumes the array is sorted, contains distinct numbers, has exactly one missing number, and all other numbers in the range are present.
+
+**Pattern Recognition:** Array Fundamentals — Mathematical Approach.
+
+**Complexity:**
+
+- Time: O(n)
+- Auxiliary Space: O(1)
+
+**Key Takeaway:** Instead of searching for every number individually, calculate the expected sum and subtract the actual array sum to find the missing number.
+
+---
 ## Revision Rules
 
 1. Always check whether an array can be empty before accessing `arr[0]`.
