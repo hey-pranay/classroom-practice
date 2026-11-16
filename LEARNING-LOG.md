@@ -499,7 +499,6 @@ Output: `50 10 20 30 40`
 and place the saved element at the beginning.
 
 ---
-
 ## Revision Rules
 
 1. Always check whether an array can be empty before accessing `arr[0]`.
