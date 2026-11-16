@@ -741,6 +741,63 @@ Output: `3`
 **Key Takeaway:** Use two variables to track the current consecutive count and the maximum count. Reset the current count whenever the sequence is broken.
 
 ---
+
+### Lesson 17: Find the Number That Appears Once (LeetCode 136)
+
+**Problem:** Given a non-empty array where every element appears twice except one element, find the element that appears only once.
+
+**Example:**
+
+```java
+int[] nums = {5, 3, 5, 2, 3};
+```
+
+Output: `2`
+
+**Approach 1: Brute Force (Nested Loops)**
+
+- Traverse each element.
+- Count how many times it appears in the entire array.
+- Return the element whose frequency is exactly one.
+
+**Complexity:**
+- Time: O(n²)
+- Auxiliary Space: O(1)
+
+**Approach 2: XOR (Optimized Array Approach)**
+
+XOR (`^`) follows these properties:
+
+- `a ^ a = 0`
+- `a ^ 0 = a`
+- `a ^ b = b ^ a` (Commutative)
+- XOR is associative, so elements can be regrouped.
+
+**Binary Example:**
+
+```text
+5 = 0101
+3 = 0011
+---------
+    0110 = 6
+```
+
+Therefore:
+- `5 ^ 3 = 6`
+- `3 ^ 5 = 6`
+- `5 ^ 3 ^ 5 = 3`
+
+All duplicate elements cancel each other because `a ^ a = 0`. The unique element remains.
+
+**Complexity:**
+- Time: O(n)
+- Auxiliary Space: O(1)
+
+**Pattern Recognition:** XOR / Bit Manipulation
+
+**Key Takeaway:** XOR can solve certain frequency-based array problems efficiently without using extra data structures.
+
+---
 ## Revision Rules
 
 1. Always check whether an array can be empty before accessing `arr[0]`.
