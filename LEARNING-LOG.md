@@ -499,6 +499,92 @@ Output: `50 10 20 30 40`
 and place the saved element at the beginning.
 
 ---
+
+### Lesson 13: Left Rotate an Array by K Positions
+
+**Problem:** Rotate an array to the left by K positions. The first K elements move to the end while maintaining their relative order.
+
+**Example:**
+```java
+int[] arr = {10, 20, 30, 40, 50};
+int k = 2;
+```
+
+Output: `30 40 50 10 20`
+
+### Approach 1: Repeated Rotation (Brute Force)
+
+- Rotate the array left by one position.
+- Repeat this operation K times.
+- Store the first element temporarily.
+- Shift all remaining elements one position to the left.
+- Place the saved element at the end.
+
+**Complexity:**
+- Time: O(n × k)
+- Auxiliary Space: O(1)
+
+### Approach 2: Temporary Array
+
+- Create a temporary array of size K.
+- Copy the first K elements into the temporary array.
+- Shift the remaining elements K positions to the left.
+- Copy the saved elements from the temporary array to the end.
+
+**Complexity:**
+- Time: O(n)
+- Auxiliary Space: O(k)
+
+### Approach 3: Reversal Algorithm (Optimal)
+
+**Idea:** Reverse three sections of the array to achieve the required rotation without using an extra array.
+
+For `arr = {10, 20, 30, 40, 50}` and `k = 2`:
+
+**Step 1:** Reverse the first K elements.
+
+`[20, 10, 30, 40, 50]`
+
+**Step 2:** Reverse the remaining N-K elements.
+
+`[20, 10, 50, 40, 30]`
+
+**Step 3:** Reverse the complete array.
+
+`[30, 40, 50, 10, 20]`
+
+**Three cases:**
+```java
+reverse(arr, 0, k - 1);
+reverse(arr, k, arr.length - 1);
+reverse(arr, 0, arr.length - 1);
+```
+
+**Complexity:**
+- Time: O(n)
+- Auxiliary Space: O(1)
+
+### Important Observations
+
+- Always handle an empty array before performing rotation.
+- Use `k = k % arr.length` to handle cases where K is greater than the array length.
+- Java array indices start at zero, so the last index is `arr.length - 1`.
+- The reversal algorithm modifies the original array without requiring extra storage.
+- The reversal algorithm is the optimal approach among these three methods.
+
+**Pattern Recognition:** Array Rotation — Reversal Algorithm and Two Pointers.
+
+**Complexity Comparison:**
+
+| Approach | Time | Auxiliary Space |
+|---|---|---|
+| Repeated Rotation | O(n × k) | O(1) |
+| Temporary Array | O(n) | O(k) |
+| Reversal Algorithm | O(n) | O(1) |
+
+**Key Takeaway:** The Reversal Algorithm uses three reversals to rotate an array in O(n) time and O(1) auxiliary space. It is an important array manipulation technique.
+
+---
 ## Revision Rules
 
 1. Always check whether an array can be empty before accessing `arr[0]`.
