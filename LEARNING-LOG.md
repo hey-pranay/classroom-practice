@@ -879,6 +879,55 @@ nested loops or an extra data structure.
 
 ---
 
+### Lesson 20: Two Sum in a Sorted Array
+
+**Java Class:** `TwoSumSortedArray`  
+**Package:** `Array.twoPointers`  
+**File:** `TwoSumSortedArray.java`
+
+**Problem:** Given a sorted array and a target value, find the indices of two elements whose sum equals the target.
+
+**Example:**
+```java
+int[] arr = {1, 2, 4, 6, 8, 9};
+int target = 10;
+```
+
+Output:
+```text
+0
+5
+```
+
+**Approach: Two Pointers**
+
+- Initialize `left = 0` and `right = arr.length - 1`.
+- Calculate the sum of the elements at both pointers.
+- If the sum equals the target, print or return both indices.
+- If the sum is smaller than the target, increment `left` to increase the sum.
+- If the sum is greater than the target, decrement `right` to decrease the sum.
+- Continue until `left` is no longer smaller than `right`.
+
+**Important Observations:**
+
+- The array must be sorted for this two-pointer logic to work.
+- Use a `while (left < right)` loop because both pointers move independently.
+- When the sum is too small, move the left pointer forward.
+- When the sum is too large, move the right pointer backward.
+- Do not move both pointers simultaneously.
+- If no valid pair exists, handle the case after the loop.
+
+**Pattern Recognition:** Array — Two Pointers Technique.
+
+**Complexity:**
+
+- Time: O(n)
+- Auxiliary Space: O(1)
+
+**Key Takeaway:** In a sorted array, two pointers allow us to find a pair with a target sum efficiently without using nested loops or an extra data structure.
+
+---
+
 ### Lesson 21: Container With Most Water
 
 **Java Class:** `ContainerWithMostWater`  
