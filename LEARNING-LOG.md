@@ -502,7 +502,8 @@ and place the saved element at the beginning.
 
 ### Lesson 13: Left Rotate an Array by K Positions
 
-**Problem:** Rotate an array to the left by K positions. The first K elements move to the end while maintaining their relative order.
+**Problem:** Rotate an array to the left by K positions. The first K elements move to the end while maintaining their
+relative order.
 
 **Example:**
 
@@ -522,8 +523,9 @@ Output: `30 40 50 10 20`
 - Place the saved element at the end.
 
 **Complexity:**
-- Time: O(n × k)
-- Auxiliary Space: O(1)
+
+- Time: O (n × k)
+- Auxiliary Space: O (1)
 
 ### Approach 2: Temporary Array
 
@@ -533,8 +535,9 @@ Output: `30 40 50 10 20`
 - Copy the saved elements from the temporary array to the end.
 
 **Complexity:**
-- Time: O(n)
-- Auxiliary Space: O(k)
+
+- Time: O (n)
+- Auxiliary Space: O (k)
 
 ### Approach 3: Reversal Algorithm (Optimal)
 
@@ -555,15 +558,19 @@ For `arr = {10, 20, 30, 40, 50}` and `k = 2`:
 `[30, 40, 50, 10, 20]`
 
 **Three cases:**
+
 ```java
-reverse(arr, 0, k - 1);
-reverse(arr, k, arr.length - 1);
-reverse(arr, 0, arr.length - 1);
+reverse(arr, 0,k -1);
+
+reverse(arr, k, arr.length -1);
+
+reverse(arr, 0,arr.length -1);
 ```
 
 **Complexity:**
-- Time: O(n)
-- Auxiliary Space: O(1)
+
+- Time: O (n)
+- Auxiliary Space: O (1)
 
 ### Important Observations
 
@@ -577,21 +584,24 @@ reverse(arr, 0, arr.length - 1);
 
 **Complexity Comparison:**
 
-| Approach | Time | Auxiliary Space |
-|---|---|---|
-| Repeated Rotation | O(n × k) | O(1) |
-| Temporary Array | O(n) | O(k) |
-| Reversal Algorithm | O(n) | O(1) |
+| Approach           | Time     | Auxiliary Space |
+|--------------------|----------|-----------------|
+| Repeated Rotation  | O(n × k) | O(1)            |
+| Temporary Array    | O(n)     | O(k)            |
+| Reversal Algorithm | O(n)     | O(1)            |
 
-**Key Takeaway:** The Reversal Algorithm uses three reversals to rotate an array in O(n) time and O(1) auxiliary space. It is an important array manipulation technique.
+**Key Takeaway:** The Reversal Algorithm uses three reversals to rotate an array in O (n) time and O (1) auxiliary
+space. It is an important array manipulation technique.
 
 ---
 
 ### Lesson 14: Right Rotate an Array by K Positions
 
-**Problem:** Rotate an array to the right by K positions. The last K elements move to the beginning while maintaining their relative order.
+**Problem:** Rotate an array to the right by K positions. The last K elements move to the beginning while maintaining
+their relative order.
 
 **Example:**
+
 ```java
 int[] arr = {1, 2, 3, 4, 5, 6};
 int k = 2;
@@ -607,8 +617,9 @@ Output: `5 6 1 2 3 4`
 - Repeat the process K times.
 
 **Complexity:**
-- Time: O(n × k)
-- Auxiliary Space: O(1)
+
+- Time: O (n × k)
+- Auxiliary Space: O (1)
 
 **Approach 2: Temporary Array**
 
@@ -618,8 +629,9 @@ Output: `5 6 1 2 3 4`
 - Copy the saved elements to the beginning of the original array.
 
 **Complexity:**
-- Time: O(n)
-- Auxiliary Space: O(k)
+
+- Time: O (n)
+- Auxiliary Space: O (k)
 
 **Approach 3: Reversal Algorithm (Optimal)**
 
@@ -628,15 +640,19 @@ Output: `5 6 1 2 3 4`
 - Reverse the remaining N-K elements.
 
 **Three cases:**
+
 ```java
-reverse(arr, 0, arr.length - 1);
-reverse(arr, 0, k - 1);
-reverse(arr, k, arr.length - 1);
+reverse(arr, 0,arr.length -1);
+
+reverse(arr, 0,k -1);
+
+reverse(arr, k, arr.length -1);
 ```
 
 **Complexity:**
-- Time: O(n)
-- Auxiliary Space: O(1)
+
+- Time: O (n)
+- Auxiliary Space: O (1)
 
 **Important Observations:**
 
@@ -650,13 +666,14 @@ reverse(arr, k, arr.length - 1);
 
 **Complexity Comparison:**
 
-| Approach | Time | Auxiliary Space |
-|---|---|---|
-| Repeated Rotation | O(n × k) | O(1) |
-| Temporary Array | O(n) | O(k) |
-| Reversal Algorithm | O(n) | O(1) |
+| Approach           | Time     | Auxiliary Space |
+|--------------------|----------|-----------------|
+| Repeated Rotation  | O(n × k) | O(1)            |
+| Temporary Array    | O(n)     | O(k)            |
+| Reversal Algorithm | O(n)     | O(1)            |
 
-**Key Takeaway:** Right rotation can be performed optimally using three reversals: reverse the entire array, reverse the first K elements, and reverse the remaining elements.
+**Key Takeaway:** Right rotation can be performed optimally using three reversals: reverse the entire array, reverse the
+first K elements, and reverse the remaining elements.
 
 ---
 
@@ -665,6 +682,7 @@ reverse(arr, k, arr.length - 1);
 **Problem:** Given an array containing distinct numbers from a consecutive range, find the one missing number.
 
 **Example:**
+
 ```java
 int[] arr = {1, 2, 4, 5};
 ```
@@ -679,6 +697,7 @@ Output: `3`
 - Subtract the actual sum from the expected sum to find the missing number.
 
 **Formula:**
+
 ```
 ExpectedSum = { (start+end) * (end-start+1) } / 2
 
@@ -690,16 +709,18 @@ MissingNumber = ExpectedSum - ActualSum
 - `arr[i]` accesses the actual array element, whereas `i` represents its index.
 - `end - start + 1` calculates the total count of numbers in the range.
 - Use `long` to reduce the risk of integer overflow during sum calculations.
-- This approach assumes the array is sorted, contains distinct numbers, has exactly one missing number, and all other numbers in the range are present.
+- This approach assumes the array is sorted, contains distinct numbers, has exactly one missing number, and all other
+  numbers in the range are present.
 
 **Pattern Recognition:** Array Fundamentals — Mathematical Approach.
 
 **Complexity:**
 
-- Time: O(n)
-- Auxiliary Space: O(1)
+- Time: O (n)
+- Auxiliary Space: O (1)
 
-**Key Takeaway:** Instead of searching for every number individually, calculate the expected sum and subtract the actual array sum to find the missing number.
+**Key Takeaway:** Instead of searching for every number individually, calculate the expected sum and subtract the actual
+array sum to find the missing number.
 
 ---
 
@@ -708,6 +729,7 @@ MissingNumber = ExpectedSum - ActualSum
 **Problem:** Given a binary array containing only 0s and 1s, find the maximum number of consecutive 1s.
 
 **Example:**
+
 ```java
 int[] nums = {1, 1, 0, 1, 1, 1};
 ```
@@ -736,16 +758,18 @@ Output: `3`
 
 **Complexity:**
 
-- Time: O(n)
-- Auxiliary Space: O(1)
+- Time: O (n)
+- Auxiliary Space: O (1)
 
-**Key Takeaway:** Use two variables to track the current consecutive count and the maximum count. Reset the current count whenever the sequence is broken.
+**Key Takeaway:** Use two variables to track the current consecutive count and the maximum count. Reset the current
+count whenever the sequence is broken.
 
 ---
 
 ### Lesson 17: Find the Number That Appears Once (LeetCode 136)
 
-**Problem:** Given a non-empty array where every element appears twice except one element, find the element that appears only once.
+**Problem:** Given a non-empty array where every element appears twice except one element, find the element that appears
+only once.
 
 **Example:**
 
@@ -762,8 +786,9 @@ Output: `2`
 - Return the element whose frequency is exactly one.
 
 **Complexity:**
-- Time: O(n²)
-- Auxiliary Space: O(1)
+
+- Time: O (n²)
+- Auxiliary Space: O (1)
 
 **Approach 2: XOR (Optimized Array Approach)**
 
@@ -784,6 +809,7 @@ XOR (`^`) follows these properties:
 ```
 
 Therefore:
+
 - `5 ^ 3 = 6`
 - `3 ^ 5 = 6`
 - `5 ^ 3 ^ 5 = 3`
@@ -791,14 +817,135 @@ Therefore:
 All duplicate elements cancel each other because `a ^ a = 0`. The unique element remains.
 
 **Complexity:**
-- Time: O(n)
-- Auxiliary Space: O(1)
+
+- Time: O (n)
+- Auxiliary Space: O (1)
 
 **Pattern Recognition:** XOR / Bit Manipulation
 
 **Key Takeaway:** XOR can solve certain frequency-based array problems efficiently without using extra data structures.
 
 ---
+
+### Lesson 20: Two Sum in a Sorted Array
+
+**Java Class:** `TwoSumSortedArray`  
+**Package:** `Array.twoPointers`  
+**File:** `TwoSumSortedArray.java`
+
+**Problem:** Given a sorted array and a target value, find the indices of two elements whose sum equals the target.
+
+**Example:**
+
+```java
+int[] arr = {1, 2, 4, 6, 8, 9};
+int target = 10;
+```
+
+Output:
+
+```text
+0
+5
+```
+
+**Approach: Two Pointers**
+
+- Initialize `left = 0` and `right = arr.length - 1`.
+- Calculate the sum of the elements at both pointers.
+- If the sum equals the target, print or return both indices.
+- If the sum is smaller than the target, increment `left` to increase the sum.
+- If the sum is greater than the target, decrement `right` to decrease the sum.
+- Continue until `left` is no longer smaller than `right`.
+
+**Important Observations:**
+
+- The array must be sorted for this two-pointer logic to work.
+- Use a `while (left < right)` loop because both pointers move independently.
+- When the sum is too small, move the left pointer forward.
+- When the sum is too large, move the right pointer backward.
+- Do not move both pointers simultaneously.
+- If no valid pair exists, handle the case after the loop.
+
+**Pattern Recognition:** Array — Two Pointers Technique.
+
+**Complexity:**
+
+- Time: O (n)
+- Auxiliary Space: O (1)
+
+**Key Takeaway:** In a sorted array, two pointers allow us to find a pair with a target sum efficiently without using
+nested loops or an extra data structure.
+
+---
+
+### Lesson 21: Container With Most Water
+
+**Java Class:** `ContainerWithMostWater`  
+**Package:** `Array.twoPointers`  
+**File:** `ContainerWithMostWater.java`
+
+**Problem:** Given an array where each element represents the height of a vertical line, find two lines that can hold
+the maximum amount of water.
+
+**Example:**
+
+```java
+int[] height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+```
+
+Output:
+
+```text
+49
+```
+
+**Approach: Two Pointers**
+
+- Initialize `left = 0` and `right = height.length - 1`.
+- Calculate the width using `right - left`.
+- Calculate the limiting height using `Math.min(height[left], height[right])`.
+- Calculate the current area using `width * height`.
+- Update the maximum area using `Math.max(maxArea, currentArea)`.
+- If the left height is smaller, increment `left`.
+- If the right height is smaller, decrement `right`.
+- If both heights are equal, move both pointers inward.
+- Continue until `left` is no longer smaller than `right`.
+
+**Formula:**
+
+```text
+Width = right - left
+
+Height = min(height[left], height[right])
+
+Area = Width * Height
+
+MaximumArea = max(MaximumArea, Area)
+```
+
+**Important Observations:**
+
+- The shorter line determines the maximum water height.
+- Water spills over the shorter boundary.
+- Moving the shorter pointer gives a chance to find a taller boundary.
+- Moving the taller pointer cannot improve the limiting height while the shorter boundary remains fixed.
+- `Math.max()` maintains the largest area found so far.
+
+**Pattern Recognition:** Array — Two Pointers Technique.
+
+**Complexity:**
+
+- Time: O (n)
+- Auxiliary Space: O (1)
+
+**Key Takeaway:** When calculating the maximum container area, always consider the shorter boundary as the limiting
+height. Move the shorter pointer inward to explore the possibility of finding a larger area.
+
+---
+
+---
+
 ## Revision Rules
 
 1. Always check whether an array can be empty before accessing `arr[0]`.
