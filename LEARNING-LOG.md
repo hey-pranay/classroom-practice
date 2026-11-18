@@ -1045,6 +1045,84 @@ end of a new array and move the corresponding pointer. This avoids sorting the s
 
 ---
 
+### Lesson 23: 3Sum (LeetCode 15)
+
+**Java Class:** `ThreeSum`  
+**Package:** `Array.twoPointers`  
+**File:** `ThreeSum.java`
+
+**Problem:**  
+Given an integer array, find all unique triplets `[a, b, c]` such that their sum equals zero.
+
+**Example:**
+
+```java
+int[] nums = {-1, 0, 1, 2, -1, 2, -4};
+```
+
+**Output:**
+
+```text
+[[-4, 2, 2], [-1, -1, 2], [-1, 0, 1]]
+```
+
+**Approach: Sorting + Two Pointers**
+
+1. Sort the array.
+2. Use an outer `for` loop to fix the first element.
+3. Skip duplicate fixed elements.
+4. Initialize `left = i + 1` and `right = nums.length - 1`.
+5. Calculate the remaining target:
+
+   `remainingTarget = 0 - nums[i]`
+
+6. Use two pointers to find the remaining pair:
+    - If `sum < remainingTarget`, increment `left`.
+    - If `sum > remainingTarget`, decrement `right`.
+    - If equal, store the triplet and move both pointers.
+7. Skip duplicate values after finding a valid triplet.
+8. Stop the outer loop when the fixed element becomes positive.
+
+**Formula:**
+
+```text
+nums[i] + nums[left] + nums[right] = 0
+
+nums[left] + nums[right] = 0 - nums[i]
+```
+
+**Important Observations:**
+
+- Sorting makes the two-pointer technique possible.
+- The fixed element must be different from the two pointer elements.
+- `left < right` ensures we use two different elements.
+- Duplicate fixed elements must be skipped.
+- Duplicate left and right values must also be skipped after finding a triplet.
+- If the fixed element is positive, we can stop because the array is sorted.
+- Both pointers move inward after finding a valid triplet to continue searching.
+
+**Pattern Recognition:**
+
+Use Sorting + Two Pointers when:
+
+- We need to find pairs or triplets satisfying a target sum.
+- The array can be sorted.
+- We need to avoid duplicate combinations.
+
+**Complexity:**
+
+- Time Complexity: O (n²) — sorting takes O (n log n), and the outer loop combined with the two-pointer search takes O
+  (n²).
+- Auxiliary Space: O (1) excluding sorting implementation and output storage.
+- Output Space: Depends on the number of valid triplets.
+
+**Key Takeaway:**
+
+3Sum extends the Two Sum pattern. Fix one element using a `for` loop, then use two pointers to find the remaining pair.
+Sorting helps us move pointers intelligently and skip duplicates.
+
+---
+
 ---
 
 ## Revision Rules
