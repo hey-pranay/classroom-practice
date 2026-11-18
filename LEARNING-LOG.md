@@ -798,6 +798,55 @@ All duplicate elements cancel each other because `a ^ a = 0`. The unique element
 **Key Takeaway:** XOR can solve certain frequency-based array problems efficiently without using extra data structures.
 
 ---
+
+### Lesson 18: Longest Subarray with Given Sum (Positive Numbers)
+
+**Problem:** Find the length of the longest contiguous subarray whose sum equals a given target `k`.
+
+**Example:**
+
+```java
+int[] arr = {1, 2, 1, 1, 1, 3, 2};
+int k = 6;
+```
+
+Output: `5`
+
+**Approach 1: Brute Force (Nested Loops)**
+
+- Use `i` as the starting index.
+- Use `j` as the ending index.
+- Maintain a running sum for each starting index.
+- If `sum == k`, calculate the subarray length using `j - i + 1`.
+- Update `maxLength`.
+
+**Complexity:**
+- Time: O(n²)
+- Auxiliary Space: O(1)
+
+**Approach 2: Sliding Window (Two Pointers)**
+
+- Initialize `left = 0` and `sum = 0`.
+- Move `right` through the array, adding each element to `sum`.
+- While `sum > k`, remove the leftmost element and increment `left`.
+- When `sum == k`, calculate the window length and update `maxLength`.
+
+**Complexity:**
+- Time: O(n)
+- Auxiliary Space: O(1)
+
+**Important Observations:**
+
+- `left` shrinks the window.
+- `right` expands the window.
+- `while` is necessary because removing one element may not be enough.
+- This sliding-window approach works for positive or non-negative array elements, not arbitrary negative numbers.
+
+**Pattern Recognition:** Sliding Window / Two Pointers
+
+**Key Takeaway:** When working with positive numbers and a target sum, a sliding window can optimize a nested-loop solution from O(n²) to O(n).
+
+---
 ## Revision Rules
 
 1. Always check whether an array can be empty before accessing `arr[0]`.
