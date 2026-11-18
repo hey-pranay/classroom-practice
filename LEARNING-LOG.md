@@ -888,12 +888,14 @@ nested loops or an extra data structure.
 **Problem:** Given a sorted array and a target value, find the indices of two elements whose sum equals the target.
 
 **Example:**
+
 ```java
 int[] arr = {1, 2, 4, 6, 8, 9};
 int target = 10;
 ```
 
 Output:
+
 ```text
 0
 5
@@ -921,10 +923,11 @@ Output:
 
 **Complexity:**
 
-- Time: O(n)
-- Auxiliary Space: O(1)
+- Time: O (n)
+- Auxiliary Space: O (1)
 
-**Key Takeaway:** In a sorted array, two pointers allow us to find a pair with a target sum efficiently without using nested loops or an extra data structure.
+**Key Takeaway:** In a sorted array, two pointers allow us to find a pair with a target sum efficiently without using
+nested loops or an extra data structure.
 
 ---
 
@@ -990,6 +993,55 @@ MaximumArea = max(MaximumArea, Area)
 
 **Key Takeaway:** When calculating the maximum container area, always consider the shorter boundary as the limiting
 height. Move the shorter pointer inward to explore the possibility of finding a larger area.
+
+---
+
+### Lesson 22: Squares of a Sorted Array
+
+**Problem:** Given an integer array sorted in non-decreasing order, return a new array containing the squares of every
+element, also sorted in non-decreasing order.
+
+**Example:**
+
+```java
+int[] nums = {-7, -3, 2, 3, 11};
+```
+
+Output:
+
+```text
+[4, 9, 9, 49, 121]
+```
+
+**Approach: Two Pointers with a Result Array**
+
+- Create a new result array of the same length.
+- Initialize `left = 0` and `right = nums.length - 1`.
+- Initialize `index = result.length - 1`.
+- Compare the absolute values at the left and right pointers using `Math.abs()`.
+- Square the element with the larger absolute value and store it at `result[index]`.
+- Move the pointer corresponding to the element used.
+- Decrement `index` after every placement.
+- Continue while `left <= right` to process every element, including the middle element.
+
+**Important Observations:**
+
+- The original array is sorted, but its squared values may not be sorted.
+- The largest square must be at either end of the original array.
+- `Math.abs()` helps compare negative and positive values correctly.
+- We fill the result array from right to left because we identify the largest square first.
+- The original array remains unchanged.
+- Use `left <= right` so no element is left unprocessed.
+
+**Pattern Recognition:** Array — Two Pointers Technique.
+
+**Complexity:**
+
+- Time: O (n)
+- Auxiliary Space: O (n) — result array.
+
+**Key Takeaway:** When squaring a sorted array, compare the absolute values at both ends. Place the larger square at the
+end of a new array and move the corresponding pointer. This avoids sorting the squared array separately.
 
 ---
 
