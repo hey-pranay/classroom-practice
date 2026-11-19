@@ -502,9 +502,11 @@ and place the saved element at the beginning.
 
 ### Lesson 13: Left Rotate an Array by K Positions
 
-**Problem:** Rotate an array to the left by K positions. The first K elements move to the end while maintaining their relative order.
+**Problem:** Rotate an array to the left by K positions. The first K elements move to the end while maintaining their
+relative order.
 
 **Example:**
+
 ```java
 int[] arr = {10, 20, 30, 40, 50};
 int k = 2;
@@ -521,8 +523,9 @@ Output: `30 40 50 10 20`
 - Place the saved element at the end.
 
 **Complexity:**
-- Time: O(n × k)
-- Auxiliary Space: O(1)
+
+- Time: O (n × k)
+- Auxiliary Space: O (1)
 
 ### Approach 2: Temporary Array
 
@@ -532,8 +535,9 @@ Output: `30 40 50 10 20`
 - Copy the saved elements from the temporary array to the end.
 
 **Complexity:**
-- Time: O(n)
-- Auxiliary Space: O(k)
+
+- Time: O (n)
+- Auxiliary Space: O (k)
 
 ### Approach 3: Reversal Algorithm (Optimal)
 
@@ -554,15 +558,19 @@ For `arr = {10, 20, 30, 40, 50}` and `k = 2`:
 `[30, 40, 50, 10, 20]`
 
 **Three cases:**
+
 ```java
-reverse(arr, 0, k - 1);
-reverse(arr, k, arr.length - 1);
-reverse(arr, 0, arr.length - 1);
+reverse(arr, 0,k -1);
+
+reverse(arr, k, arr.length -1);
+
+reverse(arr, 0,arr.length -1);
 ```
 
 **Complexity:**
-- Time: O(n)
-- Auxiliary Space: O(1)
+
+- Time: O (n)
+- Auxiliary Space: O (1)
 
 ### Important Observations
 
@@ -576,21 +584,24 @@ reverse(arr, 0, arr.length - 1);
 
 **Complexity Comparison:**
 
-| Approach | Time | Auxiliary Space |
-|---|---|---|
-| Repeated Rotation | O(n × k) | O(1) |
-| Temporary Array | O(n) | O(k) |
-| Reversal Algorithm | O(n) | O(1) |
+| Approach           | Time     | Auxiliary Space |
+|--------------------|----------|-----------------|
+| Repeated Rotation  | O(n × k) | O(1)            |
+| Temporary Array    | O(n)     | O(k)            |
+| Reversal Algorithm | O(n)     | O(1)            |
 
-**Key Takeaway:** The Reversal Algorithm uses three reversals to rotate an array in O(n) time and O(1) auxiliary space. It is an important array manipulation technique.
+**Key Takeaway:** The Reversal Algorithm uses three reversals to rotate an array in O (n) time and O (1) auxiliary
+space. It is an important array manipulation technique.
 
 ---
 
 ### Lesson 14: Right Rotate an Array by K Positions
 
-**Problem:** Rotate an array to the right by K positions. The last K elements move to the beginning while maintaining their relative order.
+**Problem:** Rotate an array to the right by K positions. The last K elements move to the beginning while maintaining
+their relative order.
 
 **Example:**
+
 ```java
 int[] arr = {1, 2, 3, 4, 5, 6};
 int k = 2;
@@ -606,8 +617,9 @@ Output: `5 6 1 2 3 4`
 - Repeat the process K times.
 
 **Complexity:**
-- Time: O(n × k)
-- Auxiliary Space: O(1)
+
+- Time: O (n × k)
+- Auxiliary Space: O (1)
 
 **Approach 2: Temporary Array**
 
@@ -617,8 +629,9 @@ Output: `5 6 1 2 3 4`
 - Copy the saved elements to the beginning of the original array.
 
 **Complexity:**
-- Time: O(n)
-- Auxiliary Space: O(k)
+
+- Time: O (n)
+- Auxiliary Space: O (k)
 
 **Approach 3: Reversal Algorithm (Optimal)**
 
@@ -627,15 +640,19 @@ Output: `5 6 1 2 3 4`
 - Reverse the remaining N-K elements.
 
 **Three cases:**
+
 ```java
-reverse(arr, 0, arr.length - 1);
-reverse(arr, 0, k - 1);
-reverse(arr, k, arr.length - 1);
+reverse(arr, 0,arr.length -1);
+
+reverse(arr, 0,k -1);
+
+reverse(arr, k, arr.length -1);
 ```
 
 **Complexity:**
-- Time: O(n)
-- Auxiliary Space: O(1)
+
+- Time: O (n)
+- Auxiliary Space: O (1)
 
 **Important Observations:**
 
@@ -649,13 +666,14 @@ reverse(arr, k, arr.length - 1);
 
 **Complexity Comparison:**
 
-| Approach | Time | Auxiliary Space |
-|---|---|---|
-| Repeated Rotation | O(n × k) | O(1) |
-| Temporary Array | O(n) | O(k) |
-| Reversal Algorithm | O(n) | O(1) |
+| Approach           | Time     | Auxiliary Space |
+|--------------------|----------|-----------------|
+| Repeated Rotation  | O(n × k) | O(1)            |
+| Temporary Array    | O(n)     | O(k)            |
+| Reversal Algorithm | O(n)     | O(1)            |
 
-**Key Takeaway:** Right rotation can be performed optimally using three reversals: reverse the entire array, reverse the first K elements, and reverse the remaining elements.
+**Key Takeaway:** Right rotation can be performed optimally using three reversals: reverse the entire array, reverse the
+first K elements, and reverse the remaining elements.
 
 ---
 
@@ -664,6 +682,7 @@ reverse(arr, k, arr.length - 1);
 **Problem:** Given an array containing distinct numbers from a consecutive range, find the one missing number.
 
 **Example:**
+
 ```java
 int[] arr = {1, 2, 4, 5};
 ```
@@ -678,6 +697,7 @@ Output: `3`
 - Subtract the actual sum from the expected sum to find the missing number.
 
 **Formula:**
+
 ```
 ExpectedSum = { (start+end) * (end-start+1) } / 2
 
@@ -689,16 +709,18 @@ MissingNumber = ExpectedSum - ActualSum
 - `arr[i]` accesses the actual array element, whereas `i` represents its index.
 - `end - start + 1` calculates the total count of numbers in the range.
 - Use `long` to reduce the risk of integer overflow during sum calculations.
-- This approach assumes the array is sorted, contains distinct numbers, has exactly one missing number, and all other numbers in the range are present.
+- This approach assumes the array is sorted, contains distinct numbers, has exactly one missing number, and all other
+  numbers in the range are present.
 
 **Pattern Recognition:** Array Fundamentals — Mathematical Approach.
 
 **Complexity:**
 
-- Time: O(n)
-- Auxiliary Space: O(1)
+- Time: O (n)
+- Auxiliary Space: O (1)
 
-**Key Takeaway:** Instead of searching for every number individually, calculate the expected sum and subtract the actual array sum to find the missing number.
+**Key Takeaway:** Instead of searching for every number individually, calculate the expected sum and subtract the actual
+array sum to find the missing number.
 
 ---
 
@@ -707,6 +729,7 @@ MissingNumber = ExpectedSum - ActualSum
 **Problem:** Given a binary array containing only 0s and 1s, find the maximum number of consecutive 1s.
 
 **Example:**
+
 ```java
 int[] nums = {1, 1, 0, 1, 1, 1};
 ```
@@ -735,16 +758,18 @@ Output: `3`
 
 **Complexity:**
 
-- Time: O(n)
-- Auxiliary Space: O(1)
+- Time: O (n)
+- Auxiliary Space: O (1)
 
-**Key Takeaway:** Use two variables to track the current consecutive count and the maximum count. Reset the current count whenever the sequence is broken.
+**Key Takeaway:** Use two variables to track the current consecutive count and the maximum count. Reset the current
+count whenever the sequence is broken.
 
 ---
 
 ### Lesson 17: Find the Number That Appears Once (LeetCode 136)
 
-**Problem:** Given a non-empty array where every element appears twice except one element, find the element that appears only once.
+**Problem:** Given a non-empty array where every element appears twice except one element, find the element that appears
+only once.
 
 **Example:**
 
@@ -761,8 +786,9 @@ Output: `2`
 - Return the element whose frequency is exactly one.
 
 **Complexity:**
-- Time: O(n²)
-- Auxiliary Space: O(1)
+
+- Time: O (n²)
+- Auxiliary Space: O (1)
 
 **Approach 2: XOR (Optimized Array Approach)**
 
@@ -783,6 +809,7 @@ XOR (`^`) follows these properties:
 ```
 
 Therefore:
+
 - `5 ^ 3 = 6`
 - `3 ^ 5 = 6`
 - `5 ^ 3 ^ 5 = 3`
@@ -790,8 +817,9 @@ Therefore:
 All duplicate elements cancel each other because `a ^ a = 0`. The unique element remains.
 
 **Complexity:**
-- Time: O(n)
-- Auxiliary Space: O(1)
+
+- Time: O (n)
+- Auxiliary Space: O (1)
 
 **Pattern Recognition:** XOR / Bit Manipulation
 
@@ -821,8 +849,9 @@ Output: `5`
 - Update `maxLength`.
 
 **Complexity:**
-- Time: O(n²)
-- Auxiliary Space: O(1)
+
+- Time: O (n²)
+- Auxiliary Space: O (1)
 
 **Approach 2: Sliding Window (Two Pointers)**
 
@@ -832,8 +861,9 @@ Output: `5`
 - When `sum == k`, calculate the window length and update `maxLength`.
 
 **Complexity:**
-- Time: O(n)
-- Auxiliary Space: O(1)
+
+- Time: O (n)
+- Auxiliary Space: O (1)
 
 **Important Observations:**
 
@@ -844,7 +874,8 @@ Output: `5`
 
 **Pattern Recognition:** Sliding Window / Two Pointers
 
-**Key Takeaway:** When working with positive numbers and a target sum, a sliding window can optimize a nested-loop solution from O(n²) to O(n).
+**Key Takeaway:** When working with positive numbers and a target sum, a sliding window can optimize a nested-loop
+solution from O (n²) to O (n).
 
 ---
 
@@ -855,7 +886,8 @@ Output: `5`
 **File:** `MaximumSumSubarrayOfSizeK.java`
 
 **Problem:**  
-Given an integer array and an integer `k`, find the maximum sum of any contiguous subarray containing exactly `k` elements.
+Given an integer array and an integer `k`, find the maximum sum of any contiguous subarray containing exactly `k`
+elements.
 
 **Example:**
 
@@ -883,8 +915,10 @@ int k = 3;
 **Formula:**
 
 ```java
-windowSum = windowSum - arr[i - k] + arr[i];
-maxSum = Math.max(maxSum, windowSum);
+windowSum =windowSum -arr[i -k]+arr[i];
+maxSum =Math.
+
+max(maxSum, windowSum);
 ```
 
 **Important Observations:**
@@ -898,20 +932,23 @@ maxSum = Math.max(maxSum, windowSum);
 **Pattern Recognition:**
 
 Use Fixed-Size Sliding Window when:
+
 - We need to examine contiguous subarrays.
 - Every subarray must have exactly `k` elements.
 - We need maximum sum, minimum sum, or another aggregate over each fixed-size window.
 
 **Complexity:**
 
-- Time Complexity: O(n) — each array element is processed a constant number of times.
-- Auxiliary Space: O(1) — only a few variables are used.
+- Time Complexity: O (n) — each array element is processed a constant number of times.
+- Auxiliary Space: O (1) — only a few variables are used.
 
 **Key Takeaway:**
 
-Instead of recalculating the sum of every subarray, reuse the previous window sum. Remove the outgoing element and add the incoming element. This reduces the brute-force O(n × k) approach to O(n).
+Instead of recalculating the sum of every subarray, reuse the previous window sum. Remove the outgoing element and add
+the incoming element. This reduces the brute-force O (n × k) approach to O (n).
 
 ---
+
 ### Lesson 20: 2Sum
 
 **Problem:** Given a sorted array and a target value, find the indices of two elements whose sum equals the target.
@@ -1145,6 +1182,105 @@ Use Sorting + Two Pointers when:
 
 3Sum extends the Two Sum pattern. Fix one element using a `for` loop, then use two pointers to find the remaining pair.
 Sorting helps us move pointers intelligently and skip duplicates.
+
+---
+
+### Lesson 24: 4Sum (Two Fixed Elements + Two Pointers)
+
+**Problem:**
+
+Given an integer array `nums` and an integer `target`, find all unique quadruplets `[a, b, c, d]` such that:
+
+`a + b + c + d = target`
+
+Each quadruplet must contain four different indices. The result must not contain duplicate quadruplets.
+
+**Example:**
+
+```java
+int[] arr = {1, 0, -1, 0, -2, 2};
+int target = 0;
+```
+
+**Output:**
+
+```text
+[[-2, -1, 1, 2], [-2, 0, 0, 2], [-1, 0, 0, 1]]
+```
+
+**Approach:**
+
+1. Sort the array so that the two-pointer technique can be applied.
+2. Use the first loop (`i`) to fix the first element.
+3. Use the second loop (`j`) to fix the second element.
+4. Initialize `left = j + 1` and `right = arr.length - 1`.
+5. Calculate the remaining target:
+
+   `remainingTarget = target - arr[i] - arr[j]`
+
+6. Use two pointers to find the remaining two elements:
+    - If `arr[left] + arr[right] < remainingTarget`, increment `left`.
+    - If `arr[left] + arr[right] > remainingTarget`, decrement `right`.
+    - If both sums are equal, store the quadruplet and move both pointers.
+7. Skip duplicate values at `i`, `j`, `left`, and `right` to avoid duplicate quadruplets.
+
+**Important Observations:**
+
+1. Sorting is necessary for the two-pointer technique.
+2. `i` fixes the first element, while `j` fixes the second element.
+3. `j = i + 1` ensures that the same index is not reused.
+4. `left = j + 1` ensures that the remaining elements come after the fixed elements.
+5. `i < arr.length - 3`: At least three elements must remain after fixing `i`.
+6. `j < arr.length - 2`: At least two elements must remain after fixing `j`.
+7. Since the array is sorted, we can move pointers intelligently instead of checking every combination.
+8. Use `long` for sum calculations to prevent integer overflow.
+9. Duplicate handling is necessary to ensure unique quadruplets.
+
+**Pattern Recognition:**
+
+The common pattern connecting 2Sum, 3Sum, and 4Sum is **Two Sum using Two Pointers**.
+
+| Problem | Fixed elements | Remaining elements |
+|---------|---------------:|-------------------:|
+| 2Sum    |              0 |                  2 |
+| 3Sum    |              1 |                  2 |
+| 4Sum    |              2 |                  2 |
+
+- 2Sum: Directly use two pointers.
+- 3Sum: Fix one element, then apply two pointers.
+- 4Sum: Fix two elements, then apply two pointers.
+
+The general idea is to fix the required number of elements and solve the remaining Two Sum problem using two pointers.
+
+**Complexity:**
+
+- **Time Complexity:** O (n³)
+    - First loop: O (n)
+    - Second loop: O (n)
+    - Two-pointer traversal: O (n)
+- **Auxiliary Space:** O (1), excluding sorting implementation and output storage.
+- **Output Space:** Depends on the number of unique quadruplets.
+
+**Key Takeaway:**
+
+The Two Sum pattern can be extended to larger sum problems.
+
+Instead of using four nested loops for 4Sum, we fix two elements and use two pointers to find the remaining two
+elements.
+
+Remember:
+
+**2Sum → 0 fixed elements**
+
+**3Sum → 1 fixed element**
+
+**4Sum → 2 fixed elements**
+
+The number of fixed elements increases, but the remaining search is handled using the same Two Pointer technique.
+
+---
+
+
 
 ---
 
