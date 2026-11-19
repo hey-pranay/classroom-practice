@@ -499,6 +499,655 @@ Output: `50 10 20 30 40`
 and place the saved element at the beginning.
 
 ---
+
+### Lesson 13: Left Rotate an Array by K Positions
+
+**Problem:** Rotate an array to the left by K positions. The first K elements move to the end while maintaining their relative order.
+
+**Example:**
+```java
+int[] arr = {10, 20, 30, 40, 50};
+int k = 2;
+```
+
+Output: `30 40 50 10 20`
+
+### Approach 1: Repeated Rotation (Brute Force)
+
+- Rotate the array left by one position.
+- Repeat this operation K times.
+- Store the first element temporarily.
+- Shift all remaining elements one position to the left.
+- Place the saved element at the end.
+
+**Complexity:**
+- Time: O(n × k)
+- Auxiliary Space: O(1)
+
+### Approach 2: Temporary Array
+
+- Create a temporary array of size K.
+- Copy the first K elements into the temporary array.
+- Shift the remaining elements K positions to the left.
+- Copy the saved elements from the temporary array to the end.
+
+**Complexity:**
+- Time: O(n)
+- Auxiliary Space: O(k)
+
+### Approach 3: Reversal Algorithm (Optimal)
+
+**Idea:** Reverse three sections of the array to achieve the required rotation without using an extra array.
+
+For `arr = {10, 20, 30, 40, 50}` and `k = 2`:
+
+**Step 1:** Reverse the first K elements.
+
+`[20, 10, 30, 40, 50]`
+
+**Step 2:** Reverse the remaining N-K elements.
+
+`[20, 10, 50, 40, 30]`
+
+**Step 3:** Reverse the complete array.
+
+`[30, 40, 50, 10, 20]`
+
+**Three cases:**
+```java
+reverse(arr, 0, k - 1);
+reverse(arr, k, arr.length - 1);
+reverse(arr, 0, arr.length - 1);
+```
+
+**Complexity:**
+- Time: O(n)
+- Auxiliary Space: O(1)
+
+### Important Observations
+
+- Always handle an empty array before performing rotation.
+- Use `k = k % arr.length` to handle cases where K is greater than the array length.
+- Java array indices start at zero, so the last index is `arr.length - 1`.
+- The reversal algorithm modifies the original array without requiring extra storage.
+- The reversal algorithm is the optimal approach among these three methods.
+
+**Pattern Recognition:** Array Rotation — Reversal Algorithm and Two Pointers.
+
+**Complexity Comparison:**
+
+| Approach | Time | Auxiliary Space |
+|---|---|---|
+| Repeated Rotation | O(n × k) | O(1) |
+| Temporary Array | O(n) | O(k) |
+| Reversal Algorithm | O(n) | O(1) |
+
+**Key Takeaway:** The Reversal Algorithm uses three reversals to rotate an array in O(n) time and O(1) auxiliary space. It is an important array manipulation technique.
+
+---
+
+### Lesson 14: Right Rotate an Array by K Positions
+
+**Problem:** Rotate an array to the right by K positions. The last K elements move to the beginning while maintaining their relative order.
+
+**Example:**
+```java
+int[] arr = {1, 2, 3, 4, 5, 6};
+int k = 2;
+```
+
+Output: `5 6 1 2 3 4`
+
+**Approach 1: Repeated Rotation (Brute Force)**
+
+- Store the last element in a temporary variable.
+- Shift all remaining elements one position to the right.
+- Place the saved element at index 0.
+- Repeat the process K times.
+
+**Complexity:**
+- Time: O(n × k)
+- Auxiliary Space: O(1)
+
+**Approach 2: Temporary Array**
+
+- Create a temporary array of size K.
+- Copy the last K elements into the temporary array.
+- Shift the remaining elements K positions to the right, traversing backward.
+- Copy the saved elements to the beginning of the original array.
+
+**Complexity:**
+- Time: O(n)
+- Auxiliary Space: O(k)
+
+**Approach 3: Reversal Algorithm (Optimal)**
+
+- Reverse the complete array.
+- Reverse the first K elements.
+- Reverse the remaining N-K elements.
+
+**Three cases:**
+```java
+reverse(arr, 0, arr.length - 1);
+reverse(arr, 0, k - 1);
+reverse(arr, k, arr.length - 1);
+```
+
+**Complexity:**
+- Time: O(n)
+- Auxiliary Space: O(1)
+
+**Important Observations:**
+
+- Always handle an empty array before performing rotation.
+- Normalize K using `k = k % arr.length`.
+- Use backward traversal when shifting elements to the right.
+- The same `reverse()` helper method works for both left and right rotations.
+- The reversal algorithm avoids using an extra array.
+
+**Pattern Recognition:** Array Rotation — Reversal Algorithm and Two Pointers.
+
+**Complexity Comparison:**
+
+| Approach | Time | Auxiliary Space |
+|---|---|---|
+| Repeated Rotation | O(n × k) | O(1) |
+| Temporary Array | O(n) | O(k) |
+| Reversal Algorithm | O(n) | O(1) |
+
+**Key Takeaway:** Right rotation can be performed optimally using three reversals: reverse the entire array, reverse the first K elements, and reverse the remaining elements.
+
+---
+
+### Lesson 15: Find the Missing Number in an Array
+
+**Problem:** Given an array containing distinct numbers from a consecutive range, find the one missing number.
+
+**Example:**
+```java
+int[] arr = {1, 2, 4, 5};
+```
+
+Output: `3`
+
+**Approach: Sum Formula**
+
+- Find the starting and ending numbers of the range.
+- Calculate the expected sum of all numbers using the arithmetic progression formula.
+- Calculate the actual sum of the array elements.
+- Subtract the actual sum from the expected sum to find the missing number.
+
+**Formula:**
+```
+ExpectedSum = { (start+end) * (end-start+1) } / 2
+
+MissingNumber = ExpectedSum - ActualSum
+```
+
+**Important Observations:**
+
+- `arr[i]` accesses the actual array element, whereas `i` represents its index.
+- `end - start + 1` calculates the total count of numbers in the range.
+- Use `long` to reduce the risk of integer overflow during sum calculations.
+- This approach assumes the array is sorted, contains distinct numbers, has exactly one missing number, and all other numbers in the range are present.
+
+**Pattern Recognition:** Array Fundamentals — Mathematical Approach.
+
+**Complexity:**
+
+- Time: O(n)
+- Auxiliary Space: O(1)
+
+**Key Takeaway:** Instead of searching for every number individually, calculate the expected sum and subtract the actual array sum to find the missing number.
+
+---
+
+### Lesson 16: Maximum Consecutive Ones
+
+**Problem:** Given a binary array containing only 0s and 1s, find the maximum number of consecutive 1s.
+
+**Example:**
+```java
+int[] nums = {1, 1, 0, 1, 1, 1};
+```
+
+Output: `3`
+
+**Approach: Single Traversal (Counting)**
+
+- Initialize `count = 0` to track the current consecutive ones.
+- Initialize `maxCount = 0` to store the maximum consecutive ones.
+- Traverse the array.
+- If the current element is 1, increment `count`.
+- If the current element is 0, reset `count` to 0.
+- After every element, update `maxCount` using `Math.max()`.
+- Return `maxCount`.
+
+**Important Observations:**
+
+- `count` tracks the current consecutive sequence.
+- `maxCount` remembers the longest sequence found so far.
+- Encountering 0 breaks the current sequence, so `count` resets to 0.
+- Update `maxCount` inside the loop to avoid missing an earlier maximum.
+- An empty array returns 0.
+
+**Pattern Recognition:** Array Traversal — Counting and Tracking Maximum.
+
+**Complexity:**
+
+- Time: O(n)
+- Auxiliary Space: O(1)
+
+**Key Takeaway:** Use two variables to track the current consecutive count and the maximum count. Reset the current count whenever the sequence is broken.
+
+---
+
+### Lesson 17: Find the Number That Appears Once (LeetCode 136)
+
+**Problem:** Given a non-empty array where every element appears twice except one element, find the element that appears only once.
+
+**Example:**
+
+```java
+int[] nums = {5, 3, 5, 2, 3};
+```
+
+Output: `2`
+
+**Approach 1: Brute Force (Nested Loops)**
+
+- Traverse each element.
+- Count how many times it appears in the entire array.
+- Return the element whose frequency is exactly one.
+
+**Complexity:**
+- Time: O(n²)
+- Auxiliary Space: O(1)
+
+**Approach 2: XOR (Optimized Array Approach)**
+
+XOR (`^`) follows these properties:
+
+- `a ^ a = 0`
+- `a ^ 0 = a`
+- `a ^ b = b ^ a` (Commutative)
+- XOR is associative, so elements can be regrouped.
+
+**Binary Example:**
+
+```text
+5 = 0101
+3 = 0011
+---------
+    0110 = 6
+```
+
+Therefore:
+- `5 ^ 3 = 6`
+- `3 ^ 5 = 6`
+- `5 ^ 3 ^ 5 = 3`
+
+All duplicate elements cancel each other because `a ^ a = 0`. The unique element remains.
+
+**Complexity:**
+- Time: O(n)
+- Auxiliary Space: O(1)
+
+**Pattern Recognition:** XOR / Bit Manipulation
+
+**Key Takeaway:** XOR can solve certain frequency-based array problems efficiently without using extra data structures.
+
+---
+
+### Lesson 18: Longest Subarray with Given Sum (Positive Numbers)
+
+**Problem:** Find the length of the longest contiguous subarray whose sum equals a given target `k`.
+
+**Example:**
+
+```java
+int[] arr = {1, 2, 1, 1, 1, 3, 2};
+int k = 6;
+```
+
+Output: `5`
+
+**Approach 1: Brute Force (Nested Loops)**
+
+- Use `i` as the starting index.
+- Use `j` as the ending index.
+- Maintain a running sum for each starting index.
+- If `sum == k`, calculate the subarray length using `j - i + 1`.
+- Update `maxLength`.
+
+**Complexity:**
+- Time: O(n²)
+- Auxiliary Space: O(1)
+
+**Approach 2: Sliding Window (Two Pointers)**
+
+- Initialize `left = 0` and `sum = 0`.
+- Move `right` through the array, adding each element to `sum`.
+- While `sum > k`, remove the leftmost element and increment `left`.
+- When `sum == k`, calculate the window length and update `maxLength`.
+
+**Complexity:**
+- Time: O(n)
+- Auxiliary Space: O(1)
+
+**Important Observations:**
+
+- `left` shrinks the window.
+- `right` expands the window.
+- `while` is necessary because removing one element may not be enough.
+- This sliding-window approach works for positive or non-negative array elements, not arbitrary negative numbers.
+
+**Pattern Recognition:** Sliding Window / Two Pointers
+
+**Key Takeaway:** When working with positive numbers and a target sum, a sliding window can optimize a nested-loop solution from O(n²) to O(n).
+
+---
+
+### Lesson 19: Maximum Sum Subarray of Size K
+
+**Java Class:** `MaximumSumSubarrayOfSizeK`  
+**Package:** `Array.slidingWindow`  
+**File:** `MaximumSumSubarrayOfSizeK.java`
+
+**Problem:**  
+Given an integer array and an integer `k`, find the maximum sum of any contiguous subarray containing exactly `k` elements.
+
+**Example:**
+
+```java
+int[] arr = {1, 2, 3, 4, 2, 1};
+int k = 3;
+```
+
+**Output:**
+
+```text
+9
+```
+
+**Approach: Fixed-Size Sliding Window**
+
+1. Initialize `windowSum = 0`.
+2. Calculate the sum of the first `k` elements.
+3. Initialize `maxSum = windowSum`.
+4. Start the second loop from index `k`.
+5. Remove the outgoing element and add the incoming element.
+6. Update the maximum sum using `Math.max()`.
+7. Continue until the array ends.
+
+**Formula:**
+
+```java
+windowSum = windowSum - arr[i - k] + arr[i];
+maxSum = Math.max(maxSum, windowSum);
+```
+
+**Important Observations:**
+
+- Every window contains exactly `k` elements.
+- The first window is calculated separately.
+- Each next window removes one element and adds one element.
+- We don't need to recalculate the entire window sum.
+- The window size remains fixed throughout the algorithm.
+
+**Pattern Recognition:**
+
+Use Fixed-Size Sliding Window when:
+- We need to examine contiguous subarrays.
+- Every subarray must have exactly `k` elements.
+- We need maximum sum, minimum sum, or another aggregate over each fixed-size window.
+
+**Complexity:**
+
+- Time Complexity: O(n) — each array element is processed a constant number of times.
+- Auxiliary Space: O(1) — only a few variables are used.
+
+**Key Takeaway:**
+
+Instead of recalculating the sum of every subarray, reuse the previous window sum. Remove the outgoing element and add the incoming element. This reduces the brute-force O(n × k) approach to O(n).
+
+---
+### Lesson 20: 2Sum
+
+**Problem:** Given a sorted array and a target value, find the indices of two elements whose sum equals the target.
+
+**Example:**
+
+```java
+int[] arr = {1, 2, 4, 6, 8, 9};
+int target = 10;
+```
+
+Output:
+
+```text
+0
+5
+```
+
+**Approach: Two Pointers**
+
+- Initialize `left = 0` and `right = arr.length - 1`.
+- Calculate the sum of the elements at both pointers.
+- If the sum equals the target, print or return both indices.
+- If the sum is smaller than the target, increment `left` to increase the sum.
+- If the sum is greater than the target, decrement `right` to decrease the sum.
+- Continue until `left` is no longer smaller than `right`.
+
+**Important Observations:**
+
+- The array must be sorted for this two-pointer logic to work.
+- Use a `while (left < right)` loop because both pointers move independently.
+- When the sum is too small, move the left pointer forward.
+- When the sum is too large, move the right pointer backward.
+- Do not move both pointers simultaneously.
+- If no valid pair exists, handle the case after the loop.
+
+**Pattern Recognition:** Array — Two Pointers Technique.
+
+**Complexity:**
+
+- Time: O (n)
+- Auxiliary Space: O (1)
+
+**Key Takeaway:** In a sorted array, two pointers allow us to find a pair with a target sum efficiently without using
+nested loops or an extra data structure.
+
+---
+
+### Lesson 21: Container With Most Water
+
+**Problem:** Given an array where each element represents the height of a vertical line, find two lines that can hold
+the maximum amount of water.
+
+**Example:**
+
+```java
+int[] height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+```
+
+Output:
+
+```text
+49
+```
+
+**Approach: Two Pointers**
+
+- Initialize `left = 0` and `right = height.length - 1`.
+- Calculate the width using `right - left`.
+- Calculate the limiting height using `Math.min(height[left], height[right])`.
+- Calculate the current area using `width * height`.
+- Update the maximum area using `Math.max(maxArea, currentArea)`.
+- If the left height is smaller, increment `left`.
+- If the right height is smaller, decrement `right`.
+- If both heights are equal, move both pointers inward.
+- Continue until `left` is no longer smaller than `right`.
+
+**Formula:**
+
+```text
+Width = right - left
+
+Height = min(height[left], height[right])
+
+Area = Width * Height
+
+MaximumArea = max(MaximumArea, Area)
+```
+
+**Important Observations:**
+
+- The shorter line determines the maximum water height.
+- Water spills over the shorter boundary.
+- Moving the shorter pointer gives a chance to find a taller boundary.
+- Moving the taller pointer cannot improve the limiting height while the shorter boundary remains fixed.
+- `Math.max()` maintains the largest area found so far.
+
+**Pattern Recognition:** Array — Two Pointers Technique.
+
+**Complexity:**
+
+- Time: O (n)
+- Auxiliary Space: O (1)
+
+**Key Takeaway:** When calculating the maximum container area, always consider the shorter boundary as the limiting
+height. Move the shorter pointer inward to explore the possibility of finding a larger area.
+
+---
+
+### Lesson 22: Squares of a Sorted Array
+
+**Problem:** Given an integer array sorted in non-decreasing order, return a new array containing the squares of every
+element, also sorted in non-decreasing order.
+
+**Example:**
+
+```java
+int[] nums = {-7, -3, 2, 3, 11};
+```
+
+Output:
+
+```text
+[4, 9, 9, 49, 121]
+```
+
+**Approach: Two Pointers with a Result Array**
+
+- Create a new result array of the same length.
+- Initialize `left = 0` and `right = nums.length - 1`.
+- Initialize `index = result.length - 1`.
+- Compare the absolute values at the left and right pointers using `Math.abs()`.
+- Square the element with the larger absolute value and store it at `result[index]`.
+- Move the pointer corresponding to the element used.
+- Decrement `index` after every placement.
+- Continue while `left <= right` to process every element, including the middle element.
+
+**Important Observations:**
+
+- The original array is sorted, but its squared values may not be sorted.
+- The largest square must be at either end of the original array.
+- `Math.abs()` helps compare negative and positive values correctly.
+- We fill the result array from right to left because we identify the largest square first.
+- The original array remains unchanged.
+- Use `left <= right` so no element is left unprocessed.
+
+**Pattern Recognition:** Array — Two Pointers Technique.
+
+**Complexity:**
+
+- Time: O (n)
+- Auxiliary Space: O (n) — result array.
+
+**Key Takeaway:** When squaring a sorted array, compare the absolute values at both ends. Place the larger square at the
+end of a new array and move the corresponding pointer. This avoids sorting the squared array separately.
+
+---
+
+### Lesson 23: 3Sum (LeetCode 15)
+
+**Java Class:** `ThreeSum`  
+**Package:** `Array.twoPointers`  
+**File:** `ThreeSum.java`
+
+**Problem:**  
+Given an integer array, find all unique triplets `[a, b, c]` such that their sum equals zero.
+
+**Example:**
+
+```java
+int[] nums = {-1, 0, 1, 2, -1, 2, -4};
+```
+
+**Output:**
+
+```text
+[[-4, 2, 2], [-1, -1, 2], [-1, 0, 1]]
+```
+
+**Approach: Sorting + Two Pointers**
+
+1. Sort the array.
+2. Use an outer `for` loop to fix the first element.
+3. Skip duplicate fixed elements.
+4. Initialize `left = i + 1` and `right = nums.length - 1`.
+5. Calculate the remaining target:
+
+   `remainingTarget = 0 - nums[i]`
+
+6. Use two pointers to find the remaining pair:
+    - If `sum < remainingTarget`, increment `left`.
+    - If `sum > remainingTarget`, decrement `right`.
+    - If equal, store the triplet and move both pointers.
+7. Skip duplicate values after finding a valid triplet.
+8. Stop the outer loop when the fixed element becomes positive.
+
+**Formula:**
+
+```text
+nums[i] + nums[left] + nums[right] = 0
+
+nums[left] + nums[right] = 0 - nums[i]
+```
+
+**Important Observations:**
+
+- Sorting makes the two-pointer technique possible.
+- The fixed element must be different from the two pointer elements.
+- `left < right` ensures we use two different elements.
+- Duplicate fixed elements must be skipped.
+- Duplicate left and right values must also be skipped after finding a triplet.
+- If the fixed element is positive, we can stop because the array is sorted.
+- Both pointers move inward after finding a valid triplet to continue searching.
+
+**Pattern Recognition:**
+
+Use Sorting + Two Pointers when:
+
+- We need to find pairs or triplets satisfying a target sum.
+- The array can be sorted.
+- We need to avoid duplicate combinations.
+
+**Complexity:**
+
+- Time Complexity: O (n²) — sorting takes O (n log n), and the outer loop combined with the two-pointer search takes O
+  (n²).
+- Auxiliary Space: O (1) excluding sorting implementation and output storage.
+- Output Space: Depends on the number of valid triplets.
+
+**Key Takeaway:**
+
+3Sum extends the Two Sum pattern. Fix one element using a `for` loop, then use two pointers to find the remaining pair.
+Sorting helps us move pointers intelligently and skip duplicates.
+
+---
+
 ## Revision Rules
 
 1. Always check whether an array can be empty before accessing `arr[0]`.
