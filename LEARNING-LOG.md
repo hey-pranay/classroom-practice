@@ -1380,6 +1380,46 @@ Instead of writing separate algorithms for every value of K, we repeatedly fix o
 **One recursive pattern can solve multiple Sum problems!**
 
 ---
+### Lesson 26: Binary Search Fundamentals (LeetCode 704)
+
+**Problem:**
+
+Given a sorted integer array and a target value, find the index of the target.
+
+If the target does not exist, return `-1`.
+
+**Example:**
+
+Input:
+```java
+int[] arr = {-1, 0, 3, 5, 9, 12};
+int target = 9;
+```
+
+Output:
+```text
+4
+```
+
+**Approach:**
+
+Binary Search works on a sorted array. Instead of checking every element one by one, it repeatedly divides the search range into half.
+
+1. Initialize `left = 0` and `right = arr.length - 1`.
+2. Calculate the middle index.
+3. Compare the middle element with the target.
+4. If the middle element equals the target, return its index.
+5. If the middle element is smaller than the target, search the right half.
+6. If the middle element is greater than the target, search the left half.
+7. If the search range becomes empty, return `-1`.
+
+**Important Formula:**
+
+Middle index:
+
+```java
+int mid = left + (right - left
+```
 
 ---
 
