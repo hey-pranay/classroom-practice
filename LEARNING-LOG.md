@@ -1280,7 +1280,106 @@ The number of fixed elements increases, but the remaining search is handled usin
 
 ---
 
+### Lesson 25: K-Sum using Recursion + Two Pointers
 
+**Problem:**
+
+Given a sorted or unsorted integer array, find all unique combinations of `k` elements whose sum equals the given target.
+
+Instead of implementing separate solutions for 2Sum, 3Sum, 4Sum, and 5Sum, we use one generic recursive function.
+
+**Example:**
+
+Input:
+```java
+int[] arr = {1, 0, -1, 0, -2, 2};
+int k = 4;
+int target = 0;
+```
+
+Output:
+```text
+[[-2, -1, 1, 2], [-2, 0, 0, 2], [-1, 0, 0, 1]]
+```
+
+**Approach:**
+
+1. Sort the array so that Two Pointers can be used.
+2. Create a recursive function with four parameters:
+    - `arr`: Input array.
+    - `start`: Starting index for searching.
+    - `k`: Number of elements still required.
+    - `target`: Remaining sum required.
+3. If `k == 2`, solve the remaining problem using Two Pointers.
+4. Otherwise, fix one element using a loop.
+5. Recursively call KSum with:
+    - `i + 1` as the new starting index.
+    - `k - 1` as the new number of required elements.
+    - `target - arr[i]` as the new remaining target.
+6. Add the fixed element to every combination returned by recursion.
+7. Skip duplicate elements to avoid duplicate combinations.
+
+**Formula:**
+
+Recursive relationship:
+
+```text
+kSum(arr, start, k, target)
+
+        |
+        v
+
+Fix arr[i]
+
+        |
+        v
+
+kSum(arr, i + 1, k - 1, target - arr[i])
+```
+
+Base case:
+
+```text
+When k == 2:
+
+Use Two Pointers.
+```
+
+**Important Observations:**
+
+- `k == 2` is the base case because Two Sum can be solved efficiently using Two Pointers on a sorted array.
+- `i + 1` ensures that the same array element is not reused.
+- `k - 1` means one element has already been selected.
+- `target - arr[i]` updates the remaining sum.
+- `i > start` is important when skipping duplicates at each recursion level.
+- The array must be sorted before calling KSum.
+- The recursive method returns combinations, which are extended by adding the current fixed element.
+- Using `long` for the target and sum is safer when input values can cause integer overflow.
+
+**Pattern Recognition:**
+
+| Problem | Fixed Elements | Remaining Problem |
+|---|---:|---|
+| 2Sum | 0 | Two Pointers |
+| 3Sum | 1 | 2Sum |
+| 4Sum | 2 | 2Sum |
+| 5Sum | 3 | 2Sum |
+| KSum | K - 2 | 2Sum |
+
+**Complexity:**
+
+- **Time Complexity:** O(n^(k-1)) for fixed k, using the Two Pointers base case. For K = 4, this becomes O(n³).
+- **Auxiliary Space:** O(k) recursion stack, excluding sorting, returned combinations, and temporary result storage.
+
+**Key Takeaway:**
+
+KSum is a generalization of 2Sum, 3Sum, and 4Sum.
+
+Instead of writing separate algorithms for every value of K, we repeatedly fix one element and reduce the problem to K - 1 Sum until we reach the 2Sum base case.
+
+**One recursive pattern can solve multiple Sum problems!**
+
+---
 
 ---
 
