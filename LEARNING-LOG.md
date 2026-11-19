@@ -847,6 +847,307 @@ Output: `5`
 **Key Takeaway:** When working with positive numbers and a target sum, a sliding window can optimize a nested-loop solution from O(n²) to O(n).
 
 ---
+
+### Lesson 19: Maximum Sum Subarray of Size K
+
+**Java Class:** `MaximumSumSubarrayOfSizeK`  
+**Package:** `Array.slidingWindow`  
+**File:** `MaximumSumSubarrayOfSizeK.java`
+
+**Problem:**  
+Given an integer array and an integer `k`, find the maximum sum of any contiguous subarray containing exactly `k` elements.
+
+**Example:**
+
+```java
+int[] arr = {1, 2, 3, 4, 2, 1};
+int k = 3;
+```
+
+**Output:**
+
+```text
+9
+```
+
+**Approach: Fixed-Size Sliding Window**
+
+1. Initialize `windowSum = 0`.
+2. Calculate the sum of the first `k` elements.
+3. Initialize `maxSum = windowSum`.
+4. Start the second loop from index `k`.
+5. Remove the outgoing element and add the incoming element.
+6. Update the maximum sum using `Math.max()`.
+7. Continue until the array ends.
+
+**Formula:**
+
+```java
+windowSum = windowSum - arr[i - k] + arr[i];
+maxSum = Math.max(maxSum, windowSum);
+```
+
+**Important Observations:**
+
+- Every window contains exactly `k` elements.
+- The first window is calculated separately.
+- Each next window removes one element and adds one element.
+- We don't need to recalculate the entire window sum.
+- The window size remains fixed throughout the algorithm.
+
+**Pattern Recognition:**
+
+Use Fixed-Size Sliding Window when:
+- We need to examine contiguous subarrays.
+- Every subarray must have exactly `k` elements.
+- We need maximum sum, minimum sum, or another aggregate over each fixed-size window.
+
+**Complexity:**
+
+- Time Complexity: O(n) — each array element is processed a constant number of times.
+- Auxiliary Space: O(1) — only a few variables are used.
+
+**Key Takeaway:**
+
+Instead of recalculating the sum of every subarray, reuse the previous window sum. Remove the outgoing element and add the incoming element. This reduces the brute-force O(n × k) approach to O(n).
+
+---
+### Lesson 20: 2Sum
+
+**Problem:** Given a sorted array and a target value, find the indices of two elements whose sum equals the target.
+
+**Example:**
+
+```java
+int[] arr = {1, 2, 4, 6, 8, 9};
+int target = 10;
+```
+
+Output:
+
+```text
+0
+5
+```
+
+**Approach: Two Pointers**
+
+- Initialize `left = 0` and `right = arr.length - 1`.
+- Calculate the sum of the elements at both pointers.
+- If the sum equals the target, print or return both indices.
+- If the sum is smaller than the target, increment `left` to increase the sum.
+- If the sum is greater than the target, decrement `right` to decrease the sum.
+- Continue until `left` is no longer smaller than `right`.
+
+**Important Observations:**
+
+- The array must be sorted for this two-pointer logic to work.
+- Use a `while (left < right)` loop because both pointers move independently.
+- When the sum is too small, move the left pointer forward.
+- When the sum is too large, move the right pointer backward.
+- Do not move both pointers simultaneously.
+- If no valid pair exists, handle the case after the loop.
+
+**Pattern Recognition:** Array — Two Pointers Technique.
+
+**Complexity:**
+
+- Time: O (n)
+- Auxiliary Space: O (1)
+
+**Key Takeaway:** In a sorted array, two pointers allow us to find a pair with a target sum efficiently without using
+nested loops or an extra data structure.
+
+---
+
+### Lesson 21: Container With Most Water
+
+**Problem:** Given an array where each element represents the height of a vertical line, find two lines that can hold
+the maximum amount of water.
+
+**Example:**
+
+```java
+int[] height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+```
+
+Output:
+
+```text
+49
+```
+
+**Approach: Two Pointers**
+
+- Initialize `left = 0` and `right = height.length - 1`.
+- Calculate the width using `right - left`.
+- Calculate the limiting height using `Math.min(height[left], height[right])`.
+- Calculate the current area using `width * height`.
+- Update the maximum area using `Math.max(maxArea, currentArea)`.
+- If the left height is smaller, increment `left`.
+- If the right height is smaller, decrement `right`.
+- If both heights are equal, move both pointers inward.
+- Continue until `left` is no longer smaller than `right`.
+
+**Formula:**
+
+```text
+Width = right - left
+
+Height = min(height[left], height[right])
+
+Area = Width * Height
+
+MaximumArea = max(MaximumArea, Area)
+```
+
+**Important Observations:**
+
+- The shorter line determines the maximum water height.
+- Water spills over the shorter boundary.
+- Moving the shorter pointer gives a chance to find a taller boundary.
+- Moving the taller pointer cannot improve the limiting height while the shorter boundary remains fixed.
+- `Math.max()` maintains the largest area found so far.
+
+**Pattern Recognition:** Array — Two Pointers Technique.
+
+**Complexity:**
+
+- Time: O (n)
+- Auxiliary Space: O (1)
+
+**Key Takeaway:** When calculating the maximum container area, always consider the shorter boundary as the limiting
+height. Move the shorter pointer inward to explore the possibility of finding a larger area.
+
+---
+
+### Lesson 22: Squares of a Sorted Array
+
+**Problem:** Given an integer array sorted in non-decreasing order, return a new array containing the squares of every
+element, also sorted in non-decreasing order.
+
+**Example:**
+
+```java
+int[] nums = {-7, -3, 2, 3, 11};
+```
+
+Output:
+
+```text
+[4, 9, 9, 49, 121]
+```
+
+**Approach: Two Pointers with a Result Array**
+
+- Create a new result array of the same length.
+- Initialize `left = 0` and `right = nums.length - 1`.
+- Initialize `index = result.length - 1`.
+- Compare the absolute values at the left and right pointers using `Math.abs()`.
+- Square the element with the larger absolute value and store it at `result[index]`.
+- Move the pointer corresponding to the element used.
+- Decrement `index` after every placement.
+- Continue while `left <= right` to process every element, including the middle element.
+
+**Important Observations:**
+
+- The original array is sorted, but its squared values may not be sorted.
+- The largest square must be at either end of the original array.
+- `Math.abs()` helps compare negative and positive values correctly.
+- We fill the result array from right to left because we identify the largest square first.
+- The original array remains unchanged.
+- Use `left <= right` so no element is left unprocessed.
+
+**Pattern Recognition:** Array — Two Pointers Technique.
+
+**Complexity:**
+
+- Time: O (n)
+- Auxiliary Space: O (n) — result array.
+
+**Key Takeaway:** When squaring a sorted array, compare the absolute values at both ends. Place the larger square at the
+end of a new array and move the corresponding pointer. This avoids sorting the squared array separately.
+
+---
+
+### Lesson 23: 3Sum (LeetCode 15)
+
+**Java Class:** `ThreeSum`  
+**Package:** `Array.twoPointers`  
+**File:** `ThreeSum.java`
+
+**Problem:**  
+Given an integer array, find all unique triplets `[a, b, c]` such that their sum equals zero.
+
+**Example:**
+
+```java
+int[] nums = {-1, 0, 1, 2, -1, 2, -4};
+```
+
+**Output:**
+
+```text
+[[-4, 2, 2], [-1, -1, 2], [-1, 0, 1]]
+```
+
+**Approach: Sorting + Two Pointers**
+
+1. Sort the array.
+2. Use an outer `for` loop to fix the first element.
+3. Skip duplicate fixed elements.
+4. Initialize `left = i + 1` and `right = nums.length - 1`.
+5. Calculate the remaining target:
+
+   `remainingTarget = 0 - nums[i]`
+
+6. Use two pointers to find the remaining pair:
+    - If `sum < remainingTarget`, increment `left`.
+    - If `sum > remainingTarget`, decrement `right`.
+    - If equal, store the triplet and move both pointers.
+7. Skip duplicate values after finding a valid triplet.
+8. Stop the outer loop when the fixed element becomes positive.
+
+**Formula:**
+
+```text
+nums[i] + nums[left] + nums[right] = 0
+
+nums[left] + nums[right] = 0 - nums[i]
+```
+
+**Important Observations:**
+
+- Sorting makes the two-pointer technique possible.
+- The fixed element must be different from the two pointer elements.
+- `left < right` ensures we use two different elements.
+- Duplicate fixed elements must be skipped.
+- Duplicate left and right values must also be skipped after finding a triplet.
+- If the fixed element is positive, we can stop because the array is sorted.
+- Both pointers move inward after finding a valid triplet to continue searching.
+
+**Pattern Recognition:**
+
+Use Sorting + Two Pointers when:
+
+- We need to find pairs or triplets satisfying a target sum.
+- The array can be sorted.
+- We need to avoid duplicate combinations.
+
+**Complexity:**
+
+- Time Complexity: O (n²) — sorting takes O (n log n), and the outer loop combined with the two-pointer search takes O
+  (n²).
+- Auxiliary Space: O (1) excluding sorting implementation and output storage.
+- Output Space: Depends on the number of valid triplets.
+
+**Key Takeaway:**
+
+3Sum extends the Two Sum pattern. Fix one element using a `for` loop, then use two pointers to find the remaining pair.
+Sorting helps us move pointers intelligently and skip duplicates.
+
+---
+
 ## Revision Rules
 
 1. Always check whether an array can be empty before accessing `arr[0]`.
