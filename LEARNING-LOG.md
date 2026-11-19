@@ -1418,8 +1418,84 @@ Binary Search works on a sorted array. Instead of checking every element one by 
 Middle index:
 
 ```java
-int mid = left + (right - left
+int mid = left + (right - left) / 2
 ```
+
+---
+
+### Lesson 27: Find First and Last Position of Element in Sorted Array (LeetCode 34)
+
+**Problem:**
+
+Given a sorted array and a target, find the first and last occurrence of that target.
+
+If the target is not present, return `[-1, -1]`.
+
+**Example:**
+
+```java
+int[] arr = {2, 4, 4, 4, 4, 7};
+int target = 4;
+```
+
+**Output:**
+
+```text
+[1, 4]
+```
+
+**Approach:**
+
+We use Binary Search twice.
+
+1. **First Occurrence:**
+    - If `arr[mid] == target`, save `mid` in `ans`.
+    - Move towards the left using `right = mid - 1`.
+    - Continue searching to find an earlier occurrence.
+
+2. **Last Occurrence:**
+    - If `arr[mid] == target`, save `mid` in `ans`.
+    - Move towards the right using `left = mid + 1`.
+    - Continue searching to find a later occurrence.
+
+3. **Combine Results:**
+    - Call both methods.
+    - Store their results in an array.
+
+**Output:**
+
+```text
+1 4
+```
+
+**Important Observations:**
+
+- Normal Binary Search can return any matching index.
+- First Occurrence requires searching further left after finding the target.
+- Last Occurrence requires searching further right after finding the target.
+- Initialize `ans = -1` because the target might not exist.
+- Always move a pointer after finding the target to avoid an infinite loop.
+- Both searches work on the same sorted array.
+
+**Pattern Recognition:**
+
+Whenever a sorted array contains duplicate elements and we need a boundary position:
+
+- First position → Binary Search + move left.
+- Last position → Binary Search + move right.
+
+This is a variation of Binary Search called **Boundary Binary Search**.
+
+**Complexity:**
+
+- First Occurrence: O(log n)
+- Last Occurrence: O(log n)
+- Total Time Complexity: O(log n)
+- Auxiliary Space Complexity: O(1)
+
+**Key Takeaway:**
+
+Binary Search is not limited to finding whether an element exists. By modifying the pointer movement after finding the target, we can find its first and last occurrences efficiently.
 
 ---
 
