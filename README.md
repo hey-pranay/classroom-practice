@@ -28,9 +28,6 @@ Problems are organized according to their primary DSA topics.
 DSALearning/
 │
 ├── Array/
-│   ├── 169-Majority-Element/
-│   ├── 1-Two-Sum/
-│   └── 55-Jump-Game/
 │
 ├── String/
 │
