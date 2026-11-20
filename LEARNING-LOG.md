@@ -1557,6 +1557,96 @@ Binary Search can find more than existing elements. The final value of `left` ca
 
 ---
 
+### Lesson 29: Sqrt(x) — LeetCode 69
+
+**Problem:**
+
+Given a non-negative integer `x`, return the square root of `x`, rounded down to the nearest integer.
+
+Do not use built-in square root functions.
+
+**Example:**
+
+```java
+Input: x = 8
+Output: 2
+
+Explanation:
+sqrt(8) = 2.828...
+The integer part is 2.
+```
+
+**Approach: Binary Search on Answer**
+
+Instead of calculating the square root directly, we search for the largest integer whose square is less than or equal to `x`.
+
+1. Initialize `left = 0` and `right = x`.
+2. Calculate the middle element.
+3. Calculate its square.
+4. If `mid * mid <= x`:
+    - Store `mid` in `ans`.
+    - Search the right half for a potentially larger answer.
+5. Otherwise, search the left half.
+6. When the loop ends, return `ans`.
+
+**Formula:**
+
+$$
+mid = left + \frac{right-left}{2}
+$$
+
+The required answer is:
+
+$$
+\boxed{\max(mid) \text{ such that } mid^2 \leq x}
+$$
+
+**Important Observations:**
+
+- We use `ans` because finding one valid number does not guarantee it is the largest valid number.
+- `left = mid + 1` searches for a larger valid answer.
+- `right = mid - 1` eliminates numbers whose squares are too large.
+- We use `(long) mid * mid` to prevent integer overflow.
+- When the loop terminates, `ans` contains the floor square root.
+
+**Dry Run:**
+
+Input: `x = 8`
+
+| left | right | mid | mid² | Action |
+|---:|---:|---:|---:|---|
+| 0 | 8 | 4 | 16 | Search left |
+| 0 | 3 | 1 | 1 | Save 1, search right |
+| 2 | 3 | 2 | 4 | Save 2, search right |
+| 3 | 3 | 3 | 9 | Search left |
+
+Now `left = 3` and `right = 2`.
+
+Loop terminates.
+
+Output: `2`
+
+**Pattern Recognition:**
+
+This problem introduces **Binary Search on Answer**.
+
+Recognize this pattern when:
+- The answer lies within a searchable range.
+- You can check whether a candidate answer is valid.
+- You need the smallest or largest candidate satisfying a condition.
+
+**Complexity:**
+
+- Time Complexity: \(O(\log x)\) — search space is halved in every iteration.
+- Auxiliary Space: \(O(1)\) — only a few variables are used.
+
+**Key Takeaway:**
+
+Binary Search is not limited to finding an existing element in a sorted array.
+
+We can also use it to find an optimal answer within a range by checking whether a candidate answer satisfies a condition.
+
+---
 
 ---
 
