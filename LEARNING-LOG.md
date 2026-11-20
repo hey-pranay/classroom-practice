@@ -1499,6 +1499,67 @@ Binary Search is not limited to finding whether an element exists. By modifying 
 
 ---
 
+### Lesson 28: Search Insert Position (LeetCode 35)
+
+**Problem:**
+
+Given a sorted array of distinct integers and a target value:
+
+- If the target exists, return its index.
+- If the target doesn't exist, return the index where it should be inserted to maintain sorted order.
+
+**Example:**
+
+```java
+int[] arr = {1, 3, 5, 6};
+int target = 4;
+```
+
+**Output:**
+
+```text
+2
+```
+
+**Approach:**
+
+Use Binary Search to find the target or its correct insertion position.
+
+1. Initialize `left = 0` and `right = arr.length - 1`.
+2. Calculate the middle index.
+3. Compare `arr[mid]` with the target.
+4. If equal, return `mid`.
+5. If the middle element is smaller, move right using `left = mid + 1`.
+6. If the middle element is greater, move left using `right = mid - 1`.
+7. If the loop ends, return `left`.
+
+**Important Observations:**
+
+- If the target exists, return its index immediately.
+- If the target doesn't exist, `left` points to its correct insertion position.
+- When the loop ends, `left > right`.
+- We don't need to shift array elements because the problem only asks for the insertion index.
+
+**Pattern Recognition:**
+
+This is a Binary Search insertion-position pattern.
+
+Whenever a problem asks for the position where an element should be inserted into a sorted array, consider returning `left` after the Binary Search loop.
+
+**Complexity:**
+
+- Time Complexity: O(log n)
+- Auxiliary Space Complexity: O(1)
+
+**Key Takeaway:**
+
+Binary Search can find more than existing elements. The final value of `left` can also identify the correct insertion position when the target is absent.
+
+---
+
+
+---
+
 ## Revision Rules
 
 1. Always check whether an array can be empty before accessing `arr[0]`.
