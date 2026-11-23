@@ -1901,10 +1901,230 @@ Remember:
 
 ---
 
+### Lesson 33: Find Peak Element (LeetCode 162)
 
+**Class name:** `FindPeakElement`
 
+**Problem:**
+
+Given an integer array, find any peak element and return its index.
+
+A peak element is an element that is strictly greater than its neighbouring elements.
+
+For boundary elements, the missing neighbour is considered negative infinity.
+
+**Example:**
+
+```java
+int[] nums = {1, 3, 5, 4, 2};
+```
+
+**Output:**
+
+```text
+Peak index: 2
+Peak element: 5
+```
+
+**Approach:**
+
+We use Binary Search based on the increasing and decreasing slope of the array.
+
+1. Initialize `left = 0` and `right = nums.length - 1`.
+2. Calculate the middle index.
+3. Compare `nums[mid]` with `nums[mid + 1]`.
+4. If `nums[mid] < nums[mid + 1]`, the slope is increasing, so move right.
+5. Otherwise, the slope is decreasing or `mid` itself could be a peak, so move left while keeping `mid`.
+6. When `left == right`, both pointers meet at a peak index.
+
+**Formula:**
+
+Middle index:
+
+$$
+mid = left + \frac{right-left}{2}
+$$
+
+Increasing slope:
+
+$$
+nums[mid] < nums[mid+1]
+$$
+
+Move right:
+
+$$
+left = mid + 1
+$$
+
+Decreasing slope or peak:
+
+$$
+nums[mid] > nums[mid+1]
+$$
+
+Move left while keeping mid:
+
+$$
+right = mid
+$$
+
+**Important Observations:**
+
+- The array does not need to be sorted.
+- We use the slope between the middle element and its next element.
+- If the next element is greater, a peak must exist on the right.
+- If the middle element is greater than its next element, a peak must exist at the middle or on the left.
+- We use `while (left < right)` because the search ends when both pointers meet.
+- We return `left` because `left == right` at the end.
+- We use `right = mid`, not `right = mid - 1`, because `mid` could itself be the peak.
+
+**Pattern Recognition:**
+
+**Binary Search on Slope**
+
+This pattern is useful when we need to find a peak in an array without sorting it.
+
+Unlike normal Binary Search, we do not compare the middle element with a target. Instead, we compare neighbouring elements to determine the direction of the search.
+
+**Complexity:**
+
+- **Time Complexity:** O(log n), because the search space is approximately halved in every iteration.
+- **Auxiliary Space:** O(1), because we use only a few variables.
+
+**Key Takeaway:**
+
+A peak can be found using Binary Search by observing the slope of the array.
+
+Remember:
+
+- Increasing slope → Move right.
+- Decreasing slope or peak → Move left, keeping `mid`.
+- When `left == right`, we have found a peak.
 
 ---
+
+### Lesson 34: Koko Eating Bananas (LeetCode 875)
+
+**Class name:** `KokoEatingBananas`
+
+**Problem:**
+
+Koko has several piles of bananas. She has `h` hours to finish eating all the bananas.
+
+- She can choose an eating speed of `k` bananas per hour.
+- Each hour, she chooses one pile and eats up to `k` bananas.
+- If a pile has fewer than `k` bananas remaining, she finishes that pile and waits for the next hour.
+- Find the minimum eating speed required to finish all piles within `h` hours.
+
+**Example:**
+
+Input:
+```java
+int[] piles = {3, 6, 7, 11};
+int h = 8;
+```
+
+Output:
+```text
+4
+```
+
+**Approach: Binary Search on Answer**
+
+Instead of checking every possible eating speed, use binary search to find the minimum valid speed.
+
+1. Set the minimum possible speed to `1`.
+2. Set the maximum possible speed to the largest pile.
+3. Calculate the middle speed.
+4. Calculate the total hours required at that speed.
+5. If the total hours are within the available hours:
+    - The speed is valid.
+    - Store it as the current answer.
+    - Search for a smaller speed.
+6. Otherwise:
+    - The speed is too slow.
+    - Search for a larger speed.
+7. Continue until the search space is exhausted.
+
+**Formula: Ceiling Division**
+
+We need to calculate the hours required to finish each pile.
+$$
+hours = \left\lceil \frac{pile}{k} \right\rceil
+$$
+
+
+Java integer ceiling division:
+
+```java
+(pile + k - 1) / k
+```
+
+Example:
+
+```java
+pile = 11;
+k = 4;
+
+hours = (11 + 4 - 1) / 4;
+hours = 14 / 4;
+hours = 3;
+```
+
+**Output:**
+
+```text
+4
+```
+
+**Important Observations:**
+
+1. The minimum possible speed is `1`.
+2. The maximum useful speed is the largest pile.
+3. If a speed is valid, every larger speed is also valid.
+4. If a speed is invalid, every smaller speed is also invalid.
+5. We need the minimum valid speed, so whenever a valid speed is found, we continue searching on the left side.
+6. Integer ceiling division avoids floating-point calculations.
+
+**Pattern Recognition:**
+
+Binary Search on Answer
+
+Recognize this pattern when:
+- The problem asks for a minimum or maximum possible value.
+- You can check whether a candidate answer is valid.
+- Validity follows a monotonic pattern.
+
+**Complexity:**
+
+Let:
+- `n` = number of piles.
+- `m` = maximum pile size.
+
+- Finding maximum pile: O(n)
+- Calculating total hours: O(n)
+- Binary search iterations: O(log m)
+
+**Time Complexity:** O(n log m)
+
+**Auxiliary Space Complexity:** O(1)
+
+**Key Takeaway:**
+
+Binary Search is not limited to searching for an element in a sorted array.
+
+It can also be used to find the minimum or maximum feasible answer when the validity of candidate answers follows a monotonic pattern.
+
+For this problem:
+
+- Valid speed → save answer and search left.
+- Invalid speed → search right.
+
+---
+
+
+
 
 ## Revision Rules
 
