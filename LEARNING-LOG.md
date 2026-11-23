@@ -1647,6 +1647,160 @@ Binary Search is not limited to finding an existing element in a sorted array.
 We can also use it to find an optimal answer within a range by checking whether a candidate answer satisfies a condition.
 
 ---
+### Lesson 30: Search in Rotated Sorted Array (LeetCode 33)
+
+**Problem:**
+
+Given an array that was originally sorted in ascending order but rotated at an unknown pivot, find the index of a given target.
+
+Return `-1` if the target does not exist.
+
+The solution must run in **O(log n)** time.
+
+**Example:**
+
+```java
+int[] arr = {4, 5, 6, 7, 0, 1, 2};
+int target = 0;
+
+// Output: 4
+```
+
+**Approach: Binary Search**
+
+A rotated sorted array has an important property:
+
+- At least one half of the current search range is always sorted.
+- Identify the sorted half.
+- Check whether the target belongs to that half.
+- Eliminate the half that cannot contain the target.
+- Repeat until the target is found or the search space becomes empty.
+
+**Important Observations:**
+
+1. At least one half of the current search range is always sorted.
+2. `nums[left] <= nums[mid]` identifies whether the left half is sorted.
+3. If the left half is not sorted, the right half is sorted.
+4. When the target belongs to the sorted left half, update `right = mid - 1`.
+5. When the target belongs to the sorted right half, update `left = mid + 1`.
+6. Always check `nums[mid] == target` before eliminating any half.
+7. Use `while (left <= right)` to ensure the final remaining element is checked.
+
+**Pattern Recognition:**
+
+**Modified Binary Search**
+
+Whenever an array is sorted but rotated, think about:
+
+1. Identifying the sorted half.
+2. Checking whether the target belongs to that half.
+3. Eliminating the unnecessary half.
+
+**Complexity:**
+
+- Time Complexity: `O(log n)` — The search space is reduced approximately by half in every iteration.
+- Auxiliary Space: `O(1)` — Only a few variables are used.
+
+**Key Takeaway:**
+
+In a rotated sorted array, normal binary search cannot directly decide which direction to move.
+
+Instead, first identify the sorted half, check whether the target belongs to it, and eliminate the other half.
+
+This is an important Binary Search pattern used in many interview problems.
+
+---
+### Lesson 31: Find Minimum in Rotated Sorted Array (LeetCode 153)
+
+**Problem:**
+
+Given an array that was originally sorted in ascending order but rotated at an unknown pivot, find and return the minimum element.
+
+The solution must run in **O(log n)** time.
+
+**Example:**
+
+```java
+int[] arr = {4, 5, 6, 1, 2, 3};
+
+// Output: 1
+```
+
+**Approach: Binary Search**
+
+Instead of searching for a particular target, we use Binary Search to find the minimum element.
+
+Compare the middle element with the rightmost element:
+
+- If `arr[mid] > arr[right]`, the minimum is in the right half, excluding `mid`.
+- Otherwise, the minimum is either at `mid` or in the left half.
+
+Continue reducing the search space until `left == right`.
+
+
+
+**Formula:**
+
+Middle index:
+
+$$
+mid = left + \frac{right-left}{2}
+$$
+
+Pointer movement:
+
+$$
+\text{If } arr[mid] > arr[right]:
+$$
+
+$$
+left = mid + 1
+$$
+
+Otherwise:
+
+$$
+right = mid
+$$
+
+**Important Observations:**
+
+1. The array contains distinct elements.
+2. We compare `arr[mid]` with `arr[right]`.
+3. If the middle element is greater than the rightmost element, the minimum must be to the right of `mid`.
+4. Otherwise, the minimum could be at `mid`, so we must not eliminate it.
+5. We use `right = mid`, not `right = mid - 1`.
+6. We use `while (left < right)` because when both pointers meet, the minimum's index has been found.
+7. The final answer is `arr[left]`.
+
+**Pattern Recognition:**
+
+**Binary Search on a Rotated Sorted Array**
+
+When asked to find the minimum element in a rotated sorted array:
+
+1. Calculate `mid`.
+2. Compare `arr[mid]` with `arr[right]`.
+3. Eliminate the half that cannot contain the minimum.
+4. Continue until both pointers meet.
+
+**Complexity:**
+
+- Time Complexity: `O(log n)` — The search space is approximately halved in every iteration.
+- Auxiliary Space: `O(1)` — Only a few variables are used.
+
+**Key Takeaway:**
+
+In this problem, we don't search for a target. Instead, we use the relationship between the middle and rightmost elements to determine where the minimum exists.
+
+Remember the important distinction:
+
+- `left = mid + 1` eliminates the middle element.
+- `right = mid` keeps the middle element because it could be the minimum.
+
+---
+
+
 
 ---
 
