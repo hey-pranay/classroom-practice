@@ -1737,8 +1737,6 @@ Compare the middle element with the rightmost element:
 
 Continue reducing the search space until `left == right`.
 
-
-
 **Formula:**
 
 Middle index:
@@ -1799,6 +1797,110 @@ Remember the important distinction:
 - `right = mid` keeps the middle element because it could be the minimum.
 
 ---
+
+
+
+### Lesson 32: Search in Rotated Sorted Array II (LeetCode 81)
+
+**Class name:** `SearchInRotatedSortedArrayII`
+
+**Problem:**
+
+Given a rotated sorted array that may contain duplicate elements, determine whether a given target exists in the array.
+
+Return `true` if the target exists; otherwise, return `false`.
+
+**Example:**
+
+```java
+int[] arr = {2, 5, 6, 0, 0, 1, 2};
+int target = 0;
+```
+
+**Output:**
+
+```text
+true
+```
+
+**Approach:**
+
+This problem uses the same Binary Search logic as Search in Rotated Sorted Array (LC 33), but with one additional condition to handle duplicates.
+
+1. Initialize `left = 0` and `right = arr.length - 1`.
+2. Calculate the middle index.
+3. If `arr[mid] == target`, return `true`.
+4. If the left, middle, and right elements are equal, shrink the search space by moving both pointers:
+    - `left++`
+    - `right--`
+5. Otherwise, identify which half is sorted.
+6. Check whether the target belongs to that sorted half.
+7. If the loop finishes, return `false`.
+
+**Formula:**
+
+Middle index:
+
+$$
+mid = left + \frac{right-left}{2}
+$$
+
+Duplicate condition:
+
+$$
+nums[left] = nums[mid] = nums[right]
+$$
+
+When this condition is true:
+
+$$
+left = left + 1
+$$
+
+$$
+right = right - 1
+$$
+
+**Important Observations:**
+
+- At least one half is sorted when duplicates do not make the boundaries ambiguous.
+- If all three boundary values are equal, we cannot reliably identify the sorted half.
+- We remove duplicates from both boundaries to continue searching.
+- Always check `nums[mid] == target` before shrinking the boundaries.
+- Use `while (left <= right)` to ensure the final remaining element is checked.
+
+**Pattern Recognition:**
+
+**Binary Search on Rotated Sorted Array with Duplicates**
+
+Comparison with LC 33:
+
+| Feature | LC 33 | LC 81 |
+|---|---|---|
+| Duplicates | Not allowed | Allowed |
+| Return value | Index | Boolean |
+| Identify sorted half | Yes | Yes |
+| Duplicate handling | Not required | Required |
+| Average time | O(log n) | O(log n) |
+
+**Complexity:**
+
+- **Time Complexity:**
+    - Average: O(log n)
+    - Worst case: O(n), when duplicates prevent us from eliminating half the search space.
+- **Auxiliary Space:** O(1), because we use only a few variables.
+
+**Key Takeaway:**
+
+LC 81 is an extension of LC 33. The main binary search logic remains the same. The only additional challenge is handling duplicates when we cannot determine which half is sorted.
+
+Remember:
+
+- LC 33 → Identify the sorted half and eliminate the other half.
+- LC 81 → Handle ambiguous duplicates first, then apply the same sorted-half logic.
+
+---
+
 
 
 
